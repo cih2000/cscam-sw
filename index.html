@@ -99,7 +99,7 @@ header.scrolled{box-shadow:0 4px 24px rgba(0,107,98,.08);}
 
 /* Family bar */
 .family-bar{background:#05080d;border-bottom:1px solid rgba(255,255,255,.05);}
-.family-bar-inner{max-width:var(--container);margin:0 auto;padding:0 32px;height:34px;display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.family-bar-inner{max-width:var(--container);margin:0 auto;padding:0 32px;height:32px;display:flex;align-items:center;justify-content:flex-end;gap:8px;overflow-x:auto;scrollbar-width:none;}
 .family-bar-inner::-webkit-scrollbar{display:none;}
 .family-bar-label{font-family:var(--ff-mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;color:#3a5c5a;margin-right:auto;white-space:nowrap;}
 .family-bar-nav{display:flex;align-items:center;gap:3px;white-space:nowrap;}
@@ -542,8 +542,9 @@ footer{background:#030e0d;padding:44px 0 28px;border-top:1px solid rgba(255,255,
     </div>
   </div>
   <div class="nav-bar container">
-    <a href="#hero" class="logo" aria-label="E-NEST 홈으로">
-      CSCAM <span class="logo-sub">SOFTWARE</span>
+    <a href="#hero" class="logo" aria-label="E-NEST 홈으로" style="display:block;line-height:1.25;">
+      <small style="display:block;font-family:'Inter','Noto Sans KR',sans-serif;font-size:10px;color:#757575;letter-spacing:.04em;margin-bottom:2px;font-weight:500;" data-i18n-text='{"ko":"씨에스캠주식회사","en":"CSCAM Co., Ltd."}'>씨에스캠주식회사</small>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;font-style:italic;color:#1e5aa8;letter-spacing:-.01em;">SOFTWARE</div>
     </a>
     <nav class="desktop-nav">
       <a href="#what" data-i18n-text='{"ko":"제품소개","en":"Product Intro"}'>제품소개</a>
