@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-NEST — 네스팅 소프트웨어 | CSCAM SW사업부</title>
+<meta name="description" content="대형 선박 30%가 씨에스캠의 E-NEST로 제작됩니다. 조선·금속 가공 현장의 자동 네스팅 전 과정을 소프트웨어 하나로 해결합니다. — CSCAM SW사업부">
+<meta property="og:title" content="E-NEST — 네스팅 소프트웨어 | CSCAM">
+<meta property="og:description" content="강판 위의 최적 해법을 찾는 네스팅 소프트웨어. 조선·금속 가공 현장 특화.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="E-NEST — 네스팅 소프트웨어 | CSCAM">
+<script src="./js/i18n.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── CSS 변수 ── */
+:root{
+  --bg:#ffffff;
+  --bg-alt:#f0fafa;
+  --bg-deep:#dcf5f3;
+  --main:#006b62;
+  --accent:#00ad9e;
+  --text:#0a2420;
+  --text-dim:#2a5550;
+  --text-mute:#508080;
+  --line:rgba(0,107,98,.12);
+  --line-soft:rgba(0,107,98,.07);
+  --card:#ffffff;
+  --glow:0 12px 30px rgba(0,107,98,.12);
+  --on-dark:#f2fbfa;
+  --on-dark-dim:#9acece;
+  --radius:12px;
+  --section-y:clamp(64px,9vw,112px);
+  --container:1320px;
+  --ff-head:'Space Grotesk','Noto Sans KR',sans-serif;
+  --ff-body:'Noto Sans KR','Inter',sans-serif;
+  --ff-mono:'JetBrains Mono',monospace;
+}
+
+/* ── 리셋 & 기본 ── */
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scrollbar-gutter:stable;}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-body);line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+a{color:var(--accent);text-decoration:none;transition:color .2s;}
+a:hover{color:var(--main);}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;}
+ul,ol{list-style:none;}
+section *{min-width:0;}
+
+/* ── 레이아웃 ── */
+.container{max-width:var(--container);margin:0 auto;padding:0 32px;}
+section{padding:var(--section-y) 0;position:relative;scroll-margin-top:110px;}
+.bg-alt{background:var(--bg-alt);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);}
+.bg-dark{background:#031614;color:#fff;}
+#trust{background:#1b4736;}
+
+/* ── 타이포그래피 ── */
+.eyebrow{font-family:var(--ff-mono);font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;display:inline-block;margin-bottom:14px;color:var(--accent);}
+.eyebrow-light{color:#4dd9d0;}
+.h2{font-family:var(--ff-head);font-weight:800;font-size:clamp(28px,4.4vw,46px);color:var(--text);letter-spacing:-.02em;line-height:1.18;}
+.h2-light{color:#fff;}
+.h3{font-family:var(--ff-head);font-weight:700;font-size:clamp(21px,2.6vw,26px);color:var(--text);letter-spacing:-.01em;line-height:1.35;}
+.section-head{margin-bottom:52px;}
+.section-head.center{text-align:center;}
+.section-sub{color:var(--text-mute);font-size:15px;margin-top:12px;max-width:640px;word-break:keep-all;hyphens:none;}
+.section-head.center .section-sub{margin-inline:auto;}
+.body-text{color:var(--text-dim);font-size:15px;line-height:1.85;word-break:keep-all;}
+.nowrap{white-space:nowrap;}
+
+/* ── 카드 ── */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);transition:border-color .3s,box-shadow .3s,transform .3s;}
+.card.hoverable:hover{border-color:var(--accent);box-shadow:var(--glow);transform:translateY(-3px);}
+
+/* ── 버튼 ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 32px;font-size:14.5px;font-weight:700;border-radius:6px;transition:all .2s;white-space:nowrap;}
+.btn-primary{background:var(--main);color:#fff;box-shadow:var(--glow);}
+.btn-primary:hover{background:var(--accent);color:#fff;transform:translateY(-2px);}
+.btn-ghost{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:var(--on-dark);}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5);color:#fff;}
+
+/* ── 이미지 플레이스홀더 ── */
+.img-ph{background:rgba(0,107,98,.07);border:1.5px dashed rgba(0,107,98,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;width:100%;}
+.img-ph span{text-align:center;font-size:11.5px;color:var(--text-mute);font-family:var(--ff-mono);line-height:1.7;}
+
+/* ── 애니메이션 ── */
+.reveal{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease;}
+.reveal:not(.is-visible){opacity:0;transform:translateY(18px);}
+.hero-fadein{opacity:0;transform:translateY(16px);animation:heroIn .85s ease .1s forwards;}
+@keyframes heroIn{to{opacity:1;transform:translateY(0);}}
+
+/* ────────────────────────────────────────
+   HEADER
+───────────────────────────────────────── */
+header{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #e2e6ec;z-index:900;transition:box-shadow .3s;}
+header.scrolled{box-shadow:0 4px 24px rgba(0,107,98,.08);}
+
+/* Family bar */
+.family-bar{background:#05080d;border-bottom:1px solid rgba(255,255,255,.05);}
+.family-bar-inner{max-width:var(--container);margin:0 auto;padding:0 32px;height:34px;display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.family-bar-inner::-webkit-scrollbar{display:none;}
+.family-bar-label{font-family:var(--ff-mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;color:#3a5c5a;margin-right:auto;white-space:nowrap;}
+.family-bar-nav{display:flex;align-items:center;gap:3px;white-space:nowrap;}
+.family-bar-nav a,.family-bar-nav span{font-family:var(--ff-mono);font-size:9.5px;font-weight:600;letter-spacing:.03em;padding:6px 9px;border-radius:4px;color:#7488a6;transition:all .2s;}
+.family-bar-nav a:hover{color:#fff;background:rgba(255,255,255,.07);}
+.family-bar-nav a.active{color:#fff;background:var(--main);}
+.family-bar-nav span.disabled{color:#3a4556;cursor:not-allowed;}
+
+/* Main nav bar */
+.nav-bar{max-width:var(--container);height:68px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo{font-family:var(--ff-head);font-weight:800;font-size:19px;letter-spacing:.06em;color:var(--text);display:flex;align-items:center;gap:8px;}
+.logo-sub{font-size:11px;font-weight:500;color:var(--accent);letter-spacing:.04em;font-family:var(--ff-mono);}
+.desktop-nav{display:none;align-items:center;gap:28px;}
+.desktop-nav a{font-size:14px;font-weight:600;color:var(--text);padding:4px 0;border-bottom:2px solid transparent;transition:all .2s;}
+.desktop-nav a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+.desktop-nav a.cta-link{color:var(--accent);font-weight:700;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.header-utility{display:none;align-items:center;gap:10px;}
+.brand-wordmark{display:flex;align-items:baseline;font-family:Verdana,'Noto Sans KR',sans-serif;font-size:23px;color:#1e5aa8;}
+.header-divider{width:1px;height:36px;background:#e2e6ec;margin:0 4px;}
+.lang-switch{display:flex;gap:6px;align-items:center;font-size:11px;font-family:var(--ff-mono);letter-spacing:.1em;color:#757575;}
+.lang-btn{font-family:var(--ff-mono);font-size:11px;font-weight:400;color:#757575;text-decoration:none;letter-spacing:.1em;transition:color .2s;}
+.lang-btn:hover{color:var(--main);}
+@media(min-width:993px){.header-utility{display:flex;}}
+.menu-btn{width:42px;height:42px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:rgba(0,0,0,.04);border-radius:6px;}
+.menu-btn span{width:18px;height:2px;background:var(--text);display:block;}
+
+/* Drawer */
+.drawer{position:fixed;top:0;right:-300px;width:280px;height:100%;background:var(--bg);border-left:1px solid var(--line);z-index:950;transition:right .35s cubic-bezier(.16,1,.3,1);padding:110px 26px 26px;display:flex;flex-direction:column;gap:20px;}
+.drawer.open{right:0;}
+.drawer a{font-size:16px;color:var(--text);font-weight:500;}
+.drawer a:hover{color:var(--accent);}
+.drawer .drawer-cta{background:var(--main);color:#fff;text-align:center;padding:13px;border-radius:6px;margin-top:8px;font-weight:700;}
+.drawer .close-btn{position:absolute;top:22px;right:22px;color:#8892b0;font-size:22px;width:36px;height:36px;display:grid;place-items:center;}
+.drawer-overlay{position:fixed;inset:0;background:rgba(5,8,14,.4);z-index:940;display:none;}
+.drawer-overlay.open{display:block;}
+
+@media(min-width:993px){
+  .desktop-nav{display:flex;}
+  .menu-btn{display:none;}
+}
+
+/* ────────────────────────────────────────
+   ① HERO
+───────────────────────────────────────── */
+#hero{
+  min-height:92vh;
+  padding-top:calc(100px + 52px);
+  padding-bottom:72px;
+  display:flex;
+  align-items:center;
+  background:#031614;
+  position:relative;
+  overflow:hidden;
+}
+#hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:url('images/hero-smart-shipyard.png') center center/cover no-repeat;
+  opacity:1;
+  z-index:0;
+}
+.hero-bg-grad{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(rgba(0,173,158,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,173,158,.04) 1px, transparent 1px),
+    linear-gradient(100deg,rgba(3,22,20,.92) 0%,rgba(3,22,20,.72) 42%,rgba(3,22,20,.32) 72%,rgba(3,22,20,.1) 100%);
+  background-size: 44px 44px, 44px 44px, 100% 100%;
+}
+.hero-grid{display:grid;gap:40px;align-items:start;position:relative;z-index:1;}
+.hero-copy h1{
+  font-family:var(--ff-head);font-weight:800;
+  font-size:clamp(28px,4.2vw,50px);
+  line-height:1.15;letter-spacing:-.03em;
+  color:#fff;margin-bottom:22px;word-break:keep-all;
+}
+.hero-copy h1 .accent-word{color:#4dd9d0;}
+#hero .eyebrow{color:#4dd9d0;}
+.hero-copy p{font-size:16px;color:var(--on-dark-dim);line-height:1.9;max-width:520px;margin:0 0 34px;word-break:keep-all;}
+.hero-links{display:flex;flex-direction:column;align-items:flex-start;gap:14px;}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 28px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);max-width:560px;}
+.stat b{display:block;font-family:var(--ff-mono);font-weight:700;font-size:clamp(20px,2.4vw,24px);color:#fff;letter-spacing:-.01em;}
+.stat span{font-size:11px;color:var(--on-dark-dim);letter-spacing:.03em;}
+
+@media(min-width:880px){
+  .hero-grid{grid-template-columns:54% 46%;gap:56px;}
+  .hero-links{flex-direction:row;}
+  .hero-stats{grid-template-columns:repeat(4,1fr);}
+}
+.hero-fact-bar{
+  position:relative;z-index:2;
+  margin-top:40px;
+  padding:18px 24px;
+  background:rgba(0,173,158,.08);
+  border:1px solid rgba(0,173,158,.2);
+  border-radius:10px;
+  display:flex;align-items:center;gap:16px;
+}
+.hero-fact-bar .fact-icon{
+  flex-shrink:0;width:36px;height:36px;
+  background:rgba(0,173,158,.15);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#4dd9d0;font-size:18px;
+}
+.hero-fact-bar p{
+  margin:0;font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.82);word-break:keep-all;
+}
+.hero-fact-bar strong{color:#4dd9d0;font-weight:700;}
+@media(max-width:600px){
+  .hero-fact-bar{flex-direction:column;align-items:flex-start;gap:10px;}
+}
+
+/* ────────────────────────────────────────
+   ② E-NEST란?
+───────────────────────────────────────── */
+.what-grid{display:grid;gap:48px;align-items:stretch;}
+@media(min-width:993px){.what-grid{grid-template-columns:44% 56%;gap:48px;}}
+.what-right{display:flex;flex-direction:column;}
+.what-right .img-stretch{flex:1;border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--glow);}
+.what-right .img-stretch img{width:100%;height:100%;object-fit:cover;display:block;}
+
+.callout-box{
+  background:rgba(0,107,98,.06);border-left:3px solid var(--accent);
+  border-radius:8px;padding:18px 22px;margin:24px 0;
+  font-size:15.5px;font-weight:700;color:var(--main);word-break:keep-all;line-height:1.6;
+}
+.flow-diagram{display:flex;flex-direction:column;gap:0;margin-top:8px;}
+.flow-step{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;border:1px solid var(--line);border-radius:9px;
+  background:#fff;position:relative;font-size:14px;font-weight:600;color:var(--text);
+  transition:border-color .2s;
+}
+.flow-step:hover{border-color:var(--accent);}
+.flow-step.accent-step{border-color:var(--accent);background:rgba(0,173,158,.05);}
+.flow-step .step-num{
+  width:28px;height:28px;border-radius:50%;background:var(--bg-deep);
+  border:1px solid var(--line);color:var(--text-mute);
+  font-family:var(--ff-mono);font-size:11px;font-weight:700;
+  display:grid;place-items:center;flex-shrink:0;
+}
+.flow-step.accent-step .step-num{background:var(--main);border-color:var(--main);color:#fff;}
+.flow-badge{
+  margin-left:auto;font-family:var(--ff-mono);font-size:9.5px;font-weight:700;
+  background:var(--main);color:#fff;padding:3px 9px;border-radius:12px;white-space:nowrap;
+}
+.flow-arrow{
+  display:flex;justify-content:center;align-items:center;height:22px;
+  color:var(--text-mute);font-size:16px;
+}
+
+/* ────────────────────────────────────────
+   ③ 당위성
+───────────────────────────────────────── */
+.pain-grid{display:grid;gap:24px;}
+@media(min-width:700px){.pain-grid{grid-template-columns:repeat(3,1fr);}}
+
+.pain-card{padding:28px;display:flex;flex-direction:column;gap:16px;}
+.pain-num{
+  font-family:var(--ff-mono);font-size:13px;font-weight:700;letter-spacing:.08em;
+  color:var(--accent);background:rgba(0,173,158,.08);
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:8px;border:1px solid rgba(0,173,158,.2);
+}
+.pain-card h3{font-size:18px;font-weight:700;color:var(--text);line-height:1.35;}
+.pain-card p{font-size:14px;color:var(--text-dim);line-height:1.8;word-break:keep-all;}
+
+/* ────────────────────────────────────────
+   ④ 핵심 기술
+───────────────────────────────────────── */
+.tech-grid{display:grid;gap:20px;}
+@media(min-width:700px){.tech-grid{grid-template-columns:repeat(3,1fr);}}
+
+.tech-card{padding:30px;display:flex;flex-direction:column;gap:14px;}
+.tech-icon{width:44px;height:44px;border-radius:10px;background:rgba(0,173,158,.1);display:grid;place-items:center;flex-shrink:0;}
+.tech-icon svg{width:22px;height:22px;color:var(--accent);}
+.tech-title{font-size:17px;font-weight:700;color:var(--text);}
+.tech-title-en{font-size:11.5px;font-family:var(--ff-mono);color:var(--text-mute);letter-spacing:.04em;margin-top:2px;}
+.tech-label{font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;margin-top:6px;}
+.tech-body{font-size:14px;color:var(--text-dim);line-height:1.8;word-break:keep-all;}
+
+/* ────────────────────────────────────────
+   ⑤ 신뢰지표 (dark)
+───────────────────────────────────────── */
+.trust-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:52px;}
+@media(min-width:700px){.trust-stats{grid-template-columns:repeat(4,1fr);}}
+
+.trust-stat-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);padding:28px 20px;text-align:center;
+}
+.trust-stat-card b{display:block;font-family:var(--ff-mono);font-weight:800;font-size:clamp(28px,4vw,40px);color:#fff;letter-spacing:-.02em;line-height:1;}
+.trust-stat-card span{display:block;font-size:12px;color:var(--on-dark-dim);margin-top:10px;letter-spacing:.02em;word-break:keep-all;line-height:1.5;}
+.trust-para{font-size:15px;color:var(--on-dark-dim);line-height:1.9;word-break:keep-all;max-width:860px;margin:0 auto;text-align:center;}
+
+/* ────────────────────────────────────────
+   ⑦ V버전 3대 핵심 기능
+───────────────────────────────────────── */
+.vf-block{display:grid;gap:48px;align-items:center;margin-bottom:0;}
+@media(min-width:993px){
+  .vf-block{grid-template-columns:1fr 1fr;gap:72px;}
+  .vf-reverse .vf-copy{order:2;}
+  .vf-reverse .vf-media{order:1;}
+}
+.vf-num{
+  font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:.14em;
+  color:var(--accent);background:rgba(0,173,158,.09);border:1px solid rgba(0,173,158,.25);
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:8px;margin-bottom:16px;
+}
+.vf-title{
+  font-family:var(--ff-head);font-weight:800;font-size:clamp(21px,2.6vw,28px);
+  color:var(--text);letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;
+}
+.vf-tag{
+  font-family:var(--ff-mono);font-size:10.5px;font-weight:700;letter-spacing:.1em;
+  color:var(--accent);text-transform:uppercase;
+  padding:5px 12px;border-radius:12px;background:rgba(0,173,158,.07);
+  display:inline-block;margin-bottom:22px;
+}
+.vf-desc-block{margin-bottom:16px;}
+.vf-label{
+  font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:.12em;
+  color:var(--text-mute);text-transform:uppercase;margin-bottom:6px;
+}
+.vf-desc{font-size:14.5px;color:var(--text-dim);line-height:1.85;word-break:keep-all;}
+.vf-desc b{color:var(--main);font-weight:700;}
+.vf-divider{border:0;border-top:1px solid var(--line-soft);margin:64px 0;}
+
+/* ────────────────────────────────────────
+   ⑥ 제품 라인업
+───────────────────────────────────────── */
+.lineup-grid{display:grid;gap:24px;}
+@media(min-width:993px){.lineup-grid{grid-template-columns:1fr 1fr;}}
+
+.lineup-card{padding:36px;display:flex;flex-direction:column;gap:0;}
+.lineup-badge{font-family:var(--ff-mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;background:rgba(0,107,98,.08);color:var(--main);padding:5px 12px;border-radius:12px;display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;}
+.lineup-badge .new-pill{background:var(--accent);color:#fff;font-size:9px;padding:2px 7px;border-radius:8px;}
+.lineup-v{border-color:var(--accent);border-width:2px;}
+.lineup-card h3{font-family:var(--ff-head);font-weight:800;font-size:clamp(22px,2.6vw,28px);color:var(--text);letter-spacing:-.02em;margin-bottom:6px;}
+.lineup-sub{font-size:14px;color:var(--text-mute);margin-bottom:10px;}
+.lineup-target{font-size:12px;font-family:var(--ff-mono);color:var(--accent);letter-spacing:.04em;margin-bottom:22px;padding:8px 14px;background:rgba(0,173,158,.07);border-radius:6px;}
+.feature-list{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.feature-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text-dim);line-height:1.55;}
+.feature-list li .chk{color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px;}
+
+/* ────────────────────────────────────────
+   ⑦ 핵심 기능 플로우
+───────────────────────────────────────── */
+.flow-steps{display:grid;gap:24px;position:relative;}
+@media(min-width:993px){
+  .flow-steps{grid-template-columns:repeat(4,1fr);gap:0;}
+}
+
+.flow-step-item{padding:24px 20px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column;gap:14px;}
+@media(min-width:993px){.flow-step-item{border-radius:0;border-right:0;}}
+@media(min-width:993px){.flow-step-item:first-child{border-radius:var(--radius) 0 0 var(--radius);}}
+@media(min-width:993px){.flow-step-item:last-child{border-radius:0 var(--radius) var(--radius) 0;border-right:1px solid var(--line);}}
+
+.flow-num{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--main);color:#fff;
+  font-family:var(--ff-mono);font-size:13px;font-weight:700;
+  display:grid;place-items:center;flex-shrink:0;
+}
+.flow-step-item h4{font-size:15.5px;font-weight:700;color:var(--text);}
+.flow-step-item p{font-size:13.5px;color:var(--text-dim);line-height:1.75;word-break:keep-all;}
+
+/* ────────────────────────────────────────
+   ⑧ 기술 검증 Q&A
+───────────────────────────────────────── */
+.verify-grid{display:grid;gap:24px;}
+@media(min-width:700px){.verify-grid{grid-template-columns:repeat(3,1fr);}}
+
+/* output docs ── 네스팅 배치 결과물 2×2 */
+.nesting-result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:32px;}
+.nesting-sub-head{font-family:var(--ff-mono);font-size:11px;font-weight:700;color:var(--main);letter-spacing:.1em;text-transform:uppercase;margin:36px 0 12px;padding-left:2px;}
+/* output docs grid */
+.output-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+@media(min-width:600px){.output-grid{grid-template-columns:repeat(3,1fr);}}
+.output-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;cursor:zoom-in;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;}
+.output-card:hover{transform:translateY(-5px) scale(1.025);box-shadow:0 14px 36px rgba(0,107,98,.13);border-color:var(--accent);}
+.output-label{padding:10px 14px;font-family:var(--ff-mono);font-size:11px;font-weight:700;color:var(--main);background:rgba(0,107,98,.04);border-bottom:1px solid var(--line);letter-spacing:.04em;}
+.output-img-wrap{background:#f0f4f3;display:flex;align-items:center;justify-content:center;overflow:hidden;height:200px;}
+.output-img-wrap img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .32s ease;}
+.output-card:hover .output-img-wrap img{transform:scale(1.06);}
+.output-card p{padding:10px 14px;font-size:12px;color:var(--text-dim);line-height:1.6;word-break:keep-all;margin:0;}
+.output-card .output-img-wrap.cover img{object-fit:cover;}
+/* lightbox */
+.lb-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;opacity:0;pointer-events:none;transition:opacity .22s;}
+.lb-overlay.active{opacity:1;pointer-events:all;}
+.lb-overlay img{max-width:90vw;max-height:82vh;object-fit:contain;border-radius:6px;display:block;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+.lb-label{font-family:var(--ff-mono);font-size:12px;color:rgba(255,255,255,.7);letter-spacing:.1em;}
+.lb-close{position:fixed;top:22px;right:28px;color:#fff;font-size:34px;cursor:pointer;line-height:1;opacity:.8;}
+.lb-close:hover{opacity:1;}
+
+/* shipyard grid */
+.shipyard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:36px;}
+@media(min-width:700px){.shipyard-grid{grid-template-columns:repeat(4,1fr);}}
+.shipyard-section-title{margin:34px 0 16px;text-align:center;}
+.shipyard-section-title b{display:block;color:#fff;font-size:20px;font-weight:800;line-height:1.35;}
+.shipyard-section-title span{display:block;margin-top:6px;color:var(--on-dark-dim);font-size:13px;line-height:1.6;word-break:keep-all;}
+.shipyard-card{border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);}
+/* 헤더: 이름(좌) + 로고(우) */
+.shipyard-header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08);}
+.shipyard-header-text{}
+.shipyard-name{font-size:14px;font-weight:700;color:#fff;display:block;word-break:keep-all;}
+.shipyard-name-en{font-size:10px;color:rgba(255,255,255,.5);font-family:var(--ff-mono);display:block;margin-top:3px;letter-spacing:.06em;}
+.shipyard-logo-img{height:28px;width:auto;max-width:72px;object-fit:contain;opacity:.85;}
+/* 사진 */
+.shipyard-photo{height:320px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0d2017 0%,#1a3025 100%);}
+.shipyard-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.8;transition:opacity .3s,transform .3s;}
+.shipyard-card:hover .shipyard-photo img{opacity:.95;transform:scale(1.04);}
+
+.verify-card{padding:28px;display:flex;flex-direction:column;gap:14px;}
+.q-badge{font-family:var(--ff-mono);font-size:11px;font-weight:700;background:var(--main);color:#fff;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;}
+.verify-q{font-size:15px;font-weight:700;color:var(--text);line-height:1.5;word-break:keep-all;}
+.verify-a{font-size:13.5px;color:var(--text-dim);line-height:1.85;word-break:keep-all;}
+
+/* ────────────────────────────────────────
+   ⑨ 고객사 레퍼런스
+───────────────────────────────────────── */
+.clients-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(min-width:700px){.clients-grid{grid-template-columns:repeat(5,1fr);}}
+
+.client-box{
+  background:rgba(0,107,98,.04);border:1px solid var(--line);border-radius:9px;
+  padding:18px 10px;text-align:center;
+  font-size:12.5px;font-weight:600;color:var(--text-dim);
+  display:flex;align-items:center;justify-content:center;min-height:64px;
+  word-break:keep-all;line-height:1.4;
+}
+.clients-note{margin-top:16px;font-size:12px;color:var(--text-mute);font-family:var(--ff-mono);}
+
+/* ────────────────────────────────────────
+   ⑩ CTA / 문의 (dark)
+───────────────────────────────────────── */
+.contact-grid{display:grid;gap:40px;align-items:flex-start;}
+@media(min-width:993px){.contact-grid{grid-template-columns:40% 1fr;gap:56px;}}
+
+.contact-info{display:flex;flex-direction:column;gap:28px;}
+.contact-block h4{font-size:13px;font-family:var(--ff-mono);color:#4dd9d0;letter-spacing:.1em;margin-bottom:8px;}
+.contact-phone-label{font-size:12px;color:var(--on-dark-dim);display:block;margin-bottom:4px;}
+.contact-phone{font-family:var(--ff-mono);font-weight:800;font-size:clamp(18px,2.4vw,22px);color:#fff;}
+.contact-address{font-size:14px;color:var(--on-dark-dim);line-height:1.75;}
+
+/* Form */
+.form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:32px;}
+form{display:flex;flex-direction:column;gap:18px;}
+.form-row{display:grid;gap:16px;}
+@media(min-width:600px){.form-row{grid-template-columns:1fr 1fr;}}
+.field label{font-size:12px;color:var(--on-dark-dim);display:block;margin-bottom:6px;font-weight:500;}
+.field input,.field textarea{
+  width:100%;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:6px;padding:11px 14px;
+  color:#fff;font-size:13.5px;font-family:inherit;
+  transition:border-color .2s;
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.3);}
+.field input:focus,.field textarea:focus{outline:none;border-color:rgba(0,173,158,.7);}
+.field textarea{height:110px;resize:vertical;line-height:1.6;}
+.submit-btn{
+  background:var(--main);color:#fff;padding:15px;font-size:14.5px;font-weight:700;
+  border-radius:6px;box-shadow:var(--glow);transition:background .2s,transform .2s;
+}
+.submit-btn:hover{background:var(--accent);transform:translateY(-2px);}
+
+/* ────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer{background:#030e0d;padding:44px 0 28px;border-top:1px solid rgba(255,255,255,.05);}
+.footer-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:22px;}
+.footer-logo{font-family:var(--ff-head);font-weight:800;font-size:17px;color:#fff;}
+.footer-logo span{font-size:11px;font-weight:400;color:#3a5c5a;margin-left:6px;font-family:var(--ff-mono);}
+.footer-nav{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:#3a5c5a;}
+.footer-nav a{color:#3a5c5a;transition:color .2s;}
+.footer-nav a:hover{color:#fff;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:#2a4a48;}
+.footer-addr{font-family:var(--ff-mono);font-size:11px;}
+
+/* ────────────────────────────────────────
+   BACK-TO-TOP
+───────────────────────────────────────── */
+.top-btn{
+  position:fixed;right:28px;bottom:28px;z-index:190;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--main);color:#fff;
+  border:1px solid rgba(255,255,255,.12);
+  display:grid;place-items:center;
+  box-shadow:0 4px 16px rgba(0,107,98,.3);
+  opacity:0;pointer-events:none;transition:opacity .3s;
+  font-size:18px;
+}
+.top-btn.visible{opacity:1;pointer-events:auto;}
+
+/* ────────────────────────────────────────
+   MOBILE RESPONSIVE  (max-width:992px)
+───────────────────────────────────────── */
+@media(max-width:992px){
+  .container{padding:0 18px;}
+  .section-head{margin-bottom:36px;}
+  .lineup-card{padding:26px;}
+  .tech-card{padding:22px;}
+  .pain-card{padding:22px;}
+  .verify-card{padding:22px;}
+  .flow-step-item{padding:20px 16px;}
+  .form-card{padding:22px;}
+  .family-bar-inner{justify-content:flex-start;padding:0 12px;}
+  .desktop-nav{display:none !important;}
+}
+@media(max-width:600px){
+  .hero-stats{gap:12px 16px;}
+  .trust-stats{gap:12px;}
+  .clients-grid{grid-template-columns:repeat(3,1fr);}
+  .contact-phone{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HEADER
+══════════════════════════════════════ -->
+<header id="site-header">
+  <div class="family-bar">
+    <div class="family-bar-inner">
+      <span class="family-bar-label" data-i18n-text="{&quot;ko&quot;:&quot;CSCAM 소프트웨어사업부&quot;,&quot;en&quot;:&quot;CSCAM Software Division&quot;}">CSCAM 소프트웨어사업부</span>
+      <nav class="family-bar-nav" id="family-bar-nav">
+        <a href="#">CNC CONTROLLER</a>
+        <a href="#">LMS SOLUTION</a>
+        <a href="#">3D PRINTER</a>
+        <a href="#">LASER PATTERNING</a>
+        <a href="#">MARKING MACHINE</a>
+        <a href="#hero" class="active">SOFTWARE</a>
+      </nav>
+    </div>
+  </div>
+  <div class="nav-bar container">
+    <a href="#hero" class="logo" aria-label="E-NEST 홈으로">
+      CSCAM <span class="logo-sub">SOFTWARE</span>
+    </a>
+    <nav class="desktop-nav">
+      <a href="#what" data-i18n-text='{"ko":"제품소개","en":"Product Intro"}'>제품소개</a>
+      <a href="#tech" data-i18n-text='{"ko":"핵심기술","en":"Core Tech"}'>핵심기술</a>
+      <a href="#lineup" data-i18n-text='{"ko":"제품 라인업","en":"Product Lineup"}'>제품 라인업</a>
+      <a href="#contact" class="cta-link" data-i18n-text='{"ko":"문의","en":"Inquiry"}'>문의</a>
+    </nav>
+    <div class="nav-right">
+      <div class="header-utility">
+        <a class="brand-wordmark brand-logo-link" href="https://cscam.co.kr/" aria-label="CSCAM 종합 홈페이지" style="text-decoration:none;"><span style="font-weight:700;">CS</span><span style="font-weight:400;">CAM</span></a>
+        <div class="header-divider"></div>
+        <div class="lang-switch">
+          <a href="?lang=ko" class="lang-btn" data-lang="ko" aria-label="한국어">KR</a>
+          <span>·</span>
+          <a href="?lang=en" class="lang-btn" data-lang="en" aria-label="English">EN</a>
+        </div>
+      </div>
+      <button class="menu-btn" id="menu-btn" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<nav class="drawer" id="mobile-drawer" aria-label="모바일 메뉴">
+  <button class="close-btn" id="close-btn" aria-label="메뉴 닫기">&times;</button>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--line-soft);font-size:10.5px;font-weight:700;font-family:var(--ff-mono);">
+    <a href="#" style="padding:5px 12px;border-radius:12px;color:#508080;background:rgba(0,107,98,0.04);border:1px solid rgba(0,107,98,0.12);">CNC CONTROLLER</a>
+    <a href="#" style="padding:5px 12px;border-radius:12px;color:#508080;background:rgba(0,107,98,0.04);border:1px solid rgba(0,107,98,0.12);">LMS SOLUTION</a>
+    <a href="#" style="padding:5px 12px;border-radius:12px;color:#508080;background:rgba(0,107,98,0.04);border:1px solid rgba(0,107,98,0.12);">3D PRINTER</a>
+    <a href="#" style="padding:5px 12px;border-radius:12px;color:#508080;background:rgba(0,107,98,0.04);border:1px solid rgba(0,107,98,0.12);">LASER PATTERNING</a>
+    <a href="#" style="padding:5px 12px;border-radius:12px;color:#508080;background:rgba(0,107,98,0.04);border:1px solid rgba(0,107,98,0.12);">MARKING MACHINE</a>
+    <a href="#hero" style="padding:5px 12px;border-radius:12px;color:#fff;background:var(--main);">SOFTWARE</a>
+  </div>
+  <a href="#what" data-i18n-text='{"ko":"제품소개","en":"Product Intro"}'>제품소개</a>
+  <a href="#tech" data-i18n-text='{"ko":"핵심기술","en":"Core Tech"}'>핵심기술</a>
+  <a href="#lineup" data-i18n-text='{"ko":"제품 라인업","en":"Product Lineup"}'>제품 라인업</a>
+  <a href="#flow" data-i18n-text='{"ko":"기능 플로우","en":"Workflow"}'>기능 플로우</a>
+  <a href="#clients" data-i18n-text='{"ko":"고객사","en":"Clients"}' style="display:none;">고객사</a>
+  <a href="#contact" class="drawer-cta" data-i18n-text='{"ko":"문의하기","en":"Inquire Now"}'>문의하기</a>
+  <div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:18px;border-top:1px solid var(--line-soft);">
+    <div class="brand-wordmark"><span style="font-weight:700;">CS</span><span style="font-weight:400;">CAM</span></div>
+    <div style="width:1px;height:22px;background:#e2e6ec;margin:0 4px;"></div>
+    <div class="lang-switch">
+      <a href="?lang=ko" class="lang-btn" data-lang="ko">KR</a><span>·</span><a href="?lang=en" class="lang-btn" data-lang="en">EN</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     ① HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg-grad"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <!-- Left copy -->
+      <div class="hero-copy">
+        <span class="eyebrow hero-fadein" style="animation-delay:.05s" data-i18n-text='{"ko":"NESTING SOFTWARE","en":"NESTING SOFTWARE"}'>NESTING SOFTWARE</span>
+        <h1 class="hero-fadein" style="animation-delay:.15s" data-i18n-html='{"ko":"E-NEST — 강판 위의 <span class=\"accent-word\">최적 해법</span>을<br>찾는 네스팅 소프트웨어","en":"E-NEST — Nesting Software Finding the <span class=\"accent-word\">Optimal Solution</span><br>on Steel Plates"}'>
+          E-NEST — 강판 위의 <span class="accent-word">최적 해법</span>을<br>찾는 네스팅 소프트웨어
+        </h1>
+        <p class="hero-fadein" style="animation-delay:.25s" data-i18n-text='{"ko":"대형 선박 30%가 씨에스캠의 E-NEST로 제작됩니다. 조선·금속 가공 현장의 자동 네스팅 전 과정을 소프트웨어 하나로 해결합니다.","en":"30% of large vessels are built with CSCAM&#39;s E-NEST. Solve the entire automatic nesting process for shipbuilding and metal fabrication with a single software."}'>
+          대형 선박 30%가 씨에스캠의 E-NEST로 제작됩니다. 조선·금속 가공 현장의 자동 네스팅 전 과정을 소프트웨어 하나로 해결합니다.
+        </p>
+        <div class="hero-links hero-fadein" style="animation-delay:.35s">
+          <a href="#what" class="btn btn-primary" data-i18n-text='{"ko":"제품 소개 보기","en":"View Product Intro"}'>제품 소개 보기</a>
+          <a href="#contact" class="btn btn-ghost" data-i18n-text='{"ko":"문의하기","en":"Inquire Now"}'>문의하기</a>
+        </div>
+        <!-- Stats row -->
+        <div class="hero-stats hero-fadein" style="animation-delay:.45s">
+          <div class="stat">
+            <b>30%</b>
+            <span data-i18n-text='{"ko":"대형 선박 적용률","en":"Large Vessel Adoption"}'>대형 선박 적용률</span>
+          </div>
+          <div class="stat">
+            <b data-i18n-text='{"ko":"25년+","en":"25 yrs+"}'>25년+</b>
+            <span data-i18n-text='{"ko":"솔루션 운영","en":"Solution Operation"}'>솔루션 운영</span>
+          </div>
+          <div class="stat">
+            <b>15+</b>
+            <span data-i18n-text='{"ko":"적용 고객사","en":"Active Customers"}'>적용 고객사</span>
+          </div>
+          <div class="stat">
+            <b>ESSI·EIA</b>
+            <span data-i18n-text='{"ko":"NC 포맷 지원","en":"NC Format Support"}'>NC 포맷 지원</span>
+          </div>
+        </div>
+      </div>
+      <!-- Right image -->
+      <div class="hero-fadein" style="animation-delay:.3s;margin-top:30px;">
+        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--glow);">
+          <img src="images/hero-nesting.png" alt="E-NEST V 네스팅 작업 화면" style="width:100%;display:block;opacity:.4;">
+        </div>
+      </div>
+    </div>
+    <!-- C안: 수치 강조 배너 -->
+    <div class="hero-fact-bar hero-fadein" style="animation-delay:.55s">
+      <div class="fact-icon">◈</div>
+      <p data-i18n-html='{"ko":"조선소에서 <strong>철판 활용율은 곧 이익율</strong>입니다. E-NEST의 최적 배치 알고리즘이 강판 한 장에서 더 많은 부재를 뽑아냅니다.","en":"In shipyards, <strong>steel plate utilization is profit margin</strong>. E-NEST&#39;s optimal nesting algorithm extracts more parts from a single steel plate."}'>조선소에서 <strong>철판 활용율은 곧 이익율</strong>입니다. E-NEST의 최적 배치 알고리즘이 강판 한 장에서 더 많은 부재를 뽑아냅니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ② E-NEST란?
+══════════════════════════════════════ -->
+<section id="what" class="bg-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n-text='{"ko":"WHAT IS E-NEST","en":"WHAT IS E-NEST"}'>WHAT IS E-NEST</span>
+      <h2 class="h2 reveal" data-i18n-html='{"ko":"네스팅(Nesting)이란, 강판 위에 부재를 최적으로<br>배치하는 작업입니다","en":"Nesting is the process of optimally placing<br>parts on a steel plate"}'>네스팅(Nesting)이란, 강판 위에 부재를 최적으로<br>배치하는 작업입니다</h2>
+    </div>
+    <div class="what-grid">
+      <!-- Left -->
+      <div class="reveal">
+        <p class="body-text" data-i18n-text='{"ko":"선박·철구조물을 만들 때는 수백~수천 개의 금속 부재(판재, 형강, 평철)를 강판에서 잘라냅니다. 이때 부재들을 강판 위에 얼마나 빈틈없이 배치하느냐가 원자재 손실과 직결됩니다. 이 배치 작업을 네스팅이라고 합니다.","en":"When building ships or steel structures, hundreds to thousands of metal parts (plates, profiles, flat bars) are cut from steel plates. At this time, how closely the parts are arranged on the steel plate is directly related to raw material loss. This arrangement process is called nesting."}'>
+          선박·철구조물을 만들 때는 수백~수천 개의 금속 부재(판재, 형강, 평철)를 강판에서 잘라냅니다. 이때 부재들을 강판 위에 얼마나 빈틈없이 배치하느냐가 원자재 손실과 직결됩니다. 이 배치 작업을 네스팅이라고 합니다.
+        </p>
+        <div class="callout-box" data-i18n-text='{"ko":"E-NEST는 이 네스팅 전 과정을 자동화하는 소프트웨어입니다.","en":"E-NEST is software that automates this entire nesting process."}'>
+          E-NEST는 이 네스팅 전 과정을 자동화하는 소프트웨어입니다.
+        </div>
+        <!-- Flow diagram -->
+        <div class="flow-diagram">
+          <div class="flow-step">
+            <div class="step-num">1</div>
+            <span data-i18n-text='{"ko":"설계 CAD 부재 데이터","en":"Design CAD Part Data"}'>설계 CAD 부재 데이터</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step accent-step">
+            <div class="step-num">2</div>
+            <span data-i18n-text='{"ko":"강판 위 자동 최적 배치","en":"Automatic Optimal Placement on Steel Plates"}'>강판 위 자동 최적 배치</span>
+            <span class="flow-badge" data-i18n-text='{"ko":"E-NEST 핵심","en":"E-NEST Core"}'>E-NEST 핵심</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="step-num">3</div>
+            <span data-i18n-text='{"ko":"절단 경로·순서 결정","en":"Cutting Path & Sequence Decision"}'>절단 경로·순서 결정</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="step-num">4</div>
+            <span data-i18n-text='{"ko":"NC 데이터 → 절단기(CNC) 전달","en":"NC Data → Transfer to Cutting Machine (CNC)"}'>NC 데이터 → 절단기(CNC) 전달</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="step-num">5</div>
+            <span data-i18n-text='{"ko":"절단 계획도·도면 자동 출력","en":"Automatic Output of Cutting Plan & Drawings"}'>절단 계획도·도면 자동 출력</span>
+          </div>
+        </div>
+      </div>
+      <!-- Right: 이미지가 좌측 하단에 맞춰 늘어남 -->
+      <div class="reveal what-right">
+        <div class="img-stretch">
+          <img src="images/hero-nesting.png" alt="E-NEST 네스팅 결과 화면">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ③ 당위성
+══════════════════════════════════════ -->
+<section id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n-text='{"ko":"WHY NESTING SOFTWARE","en":"WHY NESTING SOFTWARE"}'>WHY NESTING SOFTWARE</span>
+      <h2 class="h2 reveal" data-i18n-text='{"ko":"강재 낭비율 1%가 연간 수억 원의 손실입니다","en":"1% Steel Waste Translates to Significant Annual Material Losses"}'>강재 낭비율 1%가 연간 수억 원의 손실입니다</h2>
+    </div>
+    <div class="pain-grid">
+      <!-- 01 -->
+      <div class="card hoverable pain-card reveal">
+        <div class="pain-num">01</div>
+        <h3 data-i18n-text='{"ko":"수작업 배치의 한계","en":"Limits of Manual Nesting"}'>수작업 배치의 한계</h3>
+        <p data-i18n-text='{"ko":"판재·형강·평철은 형상이 모두 다릅니다. 수백 개 부재를 사람이 직접 배치하면 강재 이용률이 낮아지고 잔재가 늘어납니다. 조선·금속 가공에서 강재비는 전체 원가의 상당 부분을 차지하므로 배치 효율은 곧 수익성과 직결됩니다.","en":"Plates, profiles, and flat bars all have different shapes. Manually arranging hundreds of parts lowers steel utilization and increases scraps. In shipbuilding and metal fabrication, material cost account for a large portion of the total cost, so arrangement efficiency is directly linked to profitability."}'>판재·형강·평철은 형상이 모두 다릅니다. 수백 개 부재를 사람이 직접 배치하면 강재 이용률이 낮아지고 잔재가 늘어납니다. 조선·금속 가공에서 강재비는 전체 원가의 상당 부분을 차지하므로 배치 효율은 곧 수익성과 직결됩니다.</p>
+      </div>
+      <!-- 02 -->
+      <div class="card hoverable pain-card reveal">
+        <div class="pain-num">02</div>
+        <h3 data-i18n-text='{"ko":"열 변형과 절단 순서","en":"Thermal Distortion & Cutting Sequence"}'>열 변형과 절단 순서</h3>
+        <p data-i18n-text='{"ko":"절단 순서가 잘못되면 강판에 열이 누적되어 부재가 뒤틀립니다. 재작업·불량이 발생하고 후공정 일정이 밀립니다.","en":"If the cutting sequence is incorrect, heat accumulates on the steel plate, causing the parts to warp. This leads to rework/defects and delays post-processing schedules."}'>절단 순서가 잘못되면 강판에 열이 누적되어 부재가 뒤틀립니다. 재작업·불량이 발생하고 후공정 일정이 밀립니다.</p>
+      </div>
+      <!-- 03 -->
+      <div class="card hoverable pain-card reveal">
+        <div class="pain-num">03</div>
+        <h3 data-i18n-text='{"ko":"CAD-NC 연결 단절","en":"CAD-NC Connection Disruption"}'>CAD-NC 연결 단절</h3>
+        <p data-i18n-text='{"ko":"설계 CAD에서 만들어진 부재 데이터를 DNC 시스템을 통해 절단 장비까지 오류 없이 전달하는 것이 수작업으로는 번거롭고 누락 위험이 큽니다.","en":"Transferring part data created in design CAD to cutting equipment error-free via the DNC system is tedious and has a high risk of omission when done manually."}'>설계 CAD에서 만들어진 부재 데이터를 DNC 시스템을 통해 절단 장비까지 오류 없이 전달하는 것이 수작업으로는 번거롭고 누락 위험이 큽니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ④ 핵심 기술
+══════════════════════════════════════ -->
+<section id="tech" class="bg-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n-text='{"ko":"CORE TECHNOLOGY","en":"CORE TECHNOLOGY"}'>CORE TECHNOLOGY</span>
+      <h2 class="h2 reveal" data-i18n-html='{"ko":"<span class=\"nowrap\">E-NEST</span>를 구성하는 3가지 핵심 기술","en":"3 Core Technologies of <span class=\"nowrap\">E-NEST</span>"}'>E-NEST를 구성하는 3가지 핵심 기술</h2>
+      <p class="section-sub" data-i18n-html='{"ko":"단순 배치 툴이 아닙니다. 산업 현장의 요구를 해결하는 3개의 핵심 라이브러리가 <span class=\"nowrap\">E-NEST</span>를 완성합니다.","en":"It is more than a layout tool. Three core libraries designed around industrial requirements complete <span class=\"nowrap\">E-NEST</span>."}'>단순 배치 툴이 아닙니다. 산업 현장의 요구를 해결하는 3개의 핵심 라이브러리가 <span class="nowrap">E-NEST</span>를 완성합니다.</p>
+    </div>
+    <div class="tech-grid">
+
+      <!-- Card 1 -->
+      <div class="card hoverable tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tech-title" data-i18n-text='{"ko":"자동 배치 알고리즘","en":"Auto Nesting Algorithm"}'>자동 배치 알고리즘</div>
+          <div class="tech-title-en">Auto Nesting Algorithm</div>
+        </div>
+        <div>
+          <div class="tech-label" data-i18n-text='{"ko":"원리","en":"Concept"}'>원리</div>
+          <p class="tech-body" data-i18n-text='{"ko":"철판 하나에 수백 장의 부품을 배치할 때, 유전 알고리즘(Genetic Algorithm)을 사용하여 자재 낭비를 최소화하는 최적 배치를 컴퓨터가 자동으로 찾아냅니다.","en":"When nesting hundreds of parts on a single steel plate, the computer automatically finds the optimal nesting to minimize material waste using a Genetic Algorithm."}'>철판 하나에 수백 장의 부품을 배치할 때, 유전 알고리즘(Genetic Algorithm)을 사용하여 자재 낭비를 최소화하는 최적 배치를 컴퓨터가 자동으로 찾아냅니다.</p>
+        </div>
+        <div>
+          <div class="tech-label" data-i18n-text='{"ko":"왜 필수인가","en":"Why Essential"}'>왜 필수인가</div>
+          <p class="tech-body" data-i18n-text='{"ko":"배치 효율이 곧 수익성입니다. 알고리즘 성능이 강판 한 장에서 더 많은 부재를 뽑아내어 잔재와 재고 자재를 줄입니다.","en":"Nesting efficiency is directly related to profit. Algorithm performance extracts more parts from a single plate, reducing remnants and inventory materials."}'>배치 효율이 곧 수익성입니다. 알고리즘 성능이 강판 한 장에서 더 많은 부재를 뽑아내어 잔재와 재고 자재를 줄입니다.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card hoverable tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/>
+            <line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tech-title" data-i18n-text='{"ko":"잔재 모양 계산","en":"Scrap Geometry Calculation"}'>잔재 모양 계산</div>
+          <div class="tech-title-en">Scrap Geometry Calculation</div>
+        </div>
+        <div>
+          <div class="tech-label" data-i18n-text='{"ko":"원리","en":"Concept"}'>원리</div>
+          <p class="tech-body" data-i18n-text='{"ko":"철판을 다 자르고 나면 복잡하게 구멍이 뚫린 잔재(고철)가 남습니다. 컴퓨터가 이 복잡한 잔재 모양을 정확히 계산·저장합니다.","en":"After cutting the steel plate, complex scraps with holes remain. The computer accurately calculates and stores this complex remnant shape."}'>철판을 다 자르고 나면 복잡하게 구멍이 뚫린 잔재(고철)가 남습니다. 컴퓨터가 이 복잡한 잔재 모양을 정확히 계산·저장합니다.</p>
+        </div>
+        <div>
+          <div class="tech-label" data-i18n-text='{"ko":"왜 필수인가","en":"Why Essential"}'>왜 필수인가</div>
+          <p class="tech-body" data-i18n-text='{"ko":"작은 부품을 새로 만들 때 새 철판을 쓰지 않고 저장된 잔재에 자동으로 배치하여 재활용합니다. 자재비를 한 번 더 줄이는 핵심 기능입니다.","en":"When fabricating small parts, E-NEST automatically nests them on saved scrap shapes instead of using a new steel plate, maximizing recycling and saving material costs."}'>작은 부품을 새로 만들 때 새 철판을 쓰지 않고 저장된 잔재에 자동으로 배치하여 재활용합니다. 자재비를 한 번 더 줄이는 핵심 기능입니다.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card hoverable tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/>
+            <line x1="3" y1="18" x2="18" y2="18"/>
+            <rect x="17" y="15" width="4" height="5" rx="1"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tech-title" data-i18n-text='{"ko":"텍스트 자동 정렬","en":"Auto Text Arrangement"}'>텍스트 자동 정렬</div>
+          <div class="tech-title-en">Auto Text Arrangement</div>
+        </div>
+        <div>
+          <div class="tech-label" data-i18n-text='{"ko":"원리","en":"Concept"}'>원리</div>
+          <p class="tech-body" data-i18n-text='{"ko":"철판의 각 조각에 \"어디에 들어갈 부품인지\" 마킹 장비가 글씨를 새겨야 합니다. E-NEST는 이 글자들이 서로 겹치거나 부품 선 바깥으로 삐져나가지 않도록 자동 정렬합니다.","en":"The marking equipment must engrave identification text on each part of the steel plate. E-NEST automatically arranges the text so they do not overlap each other or spill outside the part boundaries."}'>철판의 각 조각에 "어디에 들어갈 부품인지" 마킹 장비가 글씨를 새겨야 합니다. E-NEST는 이 글자들이 서로 겹치거나 부품 선 바깥으로 삐져나가지 않도록 자동 정렬합니다.</p>
+        </div>
+        <div>
+          <div class="tech-label" data-i18n-text='{"ko":"왜 필수인가","en":"Why Essential"}'>왜 필수인가</div>
+          <p class="tech-body" data-i18n-text='{"ko":"글씨가 뭉개지면 현장 조립에서 부재를 특정할 수 없습니다. 이 기능이 없으면 마킹 오류가 곧 조립 오류로 이어집니다.","en":"If the text is unreadable, parts cannot be identified during on-site assembly. Without this function, marking errors directly lead to assembly errors."}'>글씨가 뭉개지면 현장 조립에서 부재를 특정할 수 없습니다. 이 기능이 없으면 마킹 오류가 곧 조립 오류로 이어집니다.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ⑥ 제품 라인업
+══════════════════════════════════════ -->
+<section id="lineup" class="bg-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n-text='{"ko":"PRODUCT LINEUP","en":"PRODUCT LINEUP"}'>PRODUCT LINEUP</span>
+      <h2 class="h2 reveal">E-NEST G · E-NEST V</h2>
+      <p class="section-sub" data-i18n-text='{"ko":"두 버전은 서로 다른 현장 환경에 최적화되어 있습니다. 도입 환경에 맞는 버전을 선택하세요.","en":"Both editions are optimized for different production environments. Select the version that best fits your workflow."}'>두 버전은 서로 다른 현장 환경에 최적화되어 있습니다. 도입 환경에 맞는 버전을 선택하세요.</p>
+    </div>
+    <div class="lineup-grid">
+
+      <!-- E-NEST G -->
+      <div class="card hoverable lineup-card reveal">
+        <div>
+          <span class="lineup-badge" data-i18n-text='{"ko":"SHIPBUILDING EDITION","en":"SHIPBUILDING EDITION"}'>SHIPBUILDING EDITION</span>
+        </div>
+        <h3>E-NEST G</h3>
+        <p class="lineup-sub" data-i18n-text='{"ko":"AM·Tribon 연동 조선 특화 버전","en":"Shipbuilding Edition with AM & Tribon Integration"}'>AM·Tribon 연동 조선 특화 버전</p>
+        <div class="lineup-target" data-i18n-text='{"ko":"대상: AM/Tribon 기반 조선소","en":"Target: AM/Tribon-Based Shipyards"}'>대상: AM/Tribon 기반 조선소</div>
+        <ul class="feature-list">
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> AM·Tribon M3 Gen 파일 직접 로딩","en":"<span class=\"chk\">✓</span> Direct Loading of AM/Tribon M3 Gen Files"}'><span class="chk">✓</span> AM·Tribon M3 Gen 파일 직접 로딩</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> PPI: 부재 편집·개선(Bevel)·심볼 처리","en":"<span class=\"chk\">✓</span> PPI: Part Editing, Beveling, & Symbol Processing"}'><span class="chk">✓</span> PPI: 부재 편집·개선(Bevel)·심볼 처리</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> 판재·평철·형강 자동 네스팅","en":"<span class=\"chk\">✓</span> Auto Nesting for Plates, Flat Bars, & Profiles"}'><span class="chk">✓</span> 판재·평철·형강 자동 네스팅</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> ESSI·EIA NC 포맷 지원","en":"<span class=\"chk\">✓</span> ESSI & EIA NC Format Support"}'><span class="chk">✓</span> ESSI·EIA NC 포맷 지원</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> 절단 계획도·상세 도면 PDF 출력","en":"<span class=\"chk\">✓</span> Output of Cutting Plans & Detailed Drawings in PDF"}'><span class="chk">✓</span> 절단 계획도·상세 도면 PDF 출력</li>
+        </ul>
+        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--glow);margin-top:auto;">
+          <img src="images/enest-g-main.png" alt="E-NEST G 메인 화면" style="width:100%;display:block;">
+        </div>
+      </div>
+
+      <!-- E-NEST V -->
+      <div class="card hoverable lineup-card lineup-v reveal">
+        <div>
+          <span class="lineup-badge" data-i18n-html='{"ko":"STANDALONE EDITION <span class=\"new-pill\">NEW</span>","en":"STANDALONE EDITION <span class=\"new-pill\">NEW</span>"}'>STANDALONE EDITION <span class="new-pill">NEW</span></span>
+        </div>
+        <h3>E-NEST V</h3>
+        <p class="lineup-sub" data-i18n-text='{"ko":"독립 설치형 차세대 범용 버전","en":"Next-Gen Standalone Universal Edition"}'>독립 설치형 차세대 범용 버전</p>
+        <div class="lineup-target" data-i18n-text='{"ko":"대상: 조선 외 금속 가공, 커스터마이징 필요 현장","en":"Target: Metal Fabrication (Non-Marine) & Customization-Required Sites"}'>대상: 조선 외 금속 가공, 커스터마이징 필요 현장</div>
+        <ul class="feature-list">
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> Standalone 설치 — 대형 CAD 시스템 없이 단독 실행","en":"<span class=\"chk\">✓</span> Standalone Installation — Executable without Large CAD Systems"}'><span class="chk">✓</span> Standalone 설치 — 대형 CAD 시스템 없이 단독 실행</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> 서버 DB 공유: 사내·외주·현장 작업자 동시 접속 + 모바일 연동","en":"<span class=\"chk\">✓</span> Server DB Sharing: Simultaneous access for internal, outsourced, and on-site operators + Mobile linkage"}'><span class="chk">✓</span> 서버 DB 공유: 사내·외주·현장 작업자 동시 접속 + 모바일 연동</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> SDK Toolkit → 고객사 자체 커스터마이징","en":"<span class=\"chk\">✓</span> SDK Toolkit → Customer-driven customization via SDK"}'><span class="chk">✓</span> SDK Toolkit → 고객사 자체 커스터마이징</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> Post Processor 다중 언어 지원 (Lua·Python·VBScript·exe)","en":"<span class=\"chk\">✓</span> Bespoke Post-Processor Scripting (Lua, Python, VBScript, exe)"}'><span class="chk">✓</span> Post Processor 다중 언어 지원 (Lua·Python·VBScript·exe)</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> 유전자 알고리즘(Genetic Algorithm) 기반 최적 배치","en":"<span class=\"chk\">✓</span> Genetic Algorithm (GA) Driven Nesting Optimization"}'><span class="chk">✓</span> 유전자 알고리즘(Genetic Algorithm) 기반 최적 배치</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> Member 가공도: 판재·형강(EQUAL/UNEQUAL-ANGLE·BULB-L)·I빔·H빔·채널 전종","en":"<span class=\"chk\">✓</span> Member Cutting Plan: Fully supports Plates, Angle Irons, Bulb Plates, I-Beams, H-Beams, and Channels"}'><span class="chk">✓</span> Member 가공도: 판재·형강(EQUAL/UNEQUAL-ANGLE·BULB-L)·I빔·H빔·채널 전종</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> Endcut·Hole·Marking 매크로 3종 — 클릭 한 번으로 일괄 적용","en":"<span class=\"chk\">✓</span> 3-in-1 Macro (Endcut, Hole, Marking) — Apply in batches with one click"}'><span class="chk">✓</span> Endcut·Hole·Marking 매크로 3종 — 클릭 한 번으로 일괄 적용</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> Web·Scallop 자동 시공 (Edge·Corner·Weld 3타입)","en":"<span class=\"chk\">✓</span> Automatic Web & Scallop Construction (3 types: Edge, Corner, Weld)"}'><span class="chk">✓</span> Web·Scallop 자동 시공 (Edge·Corner·Weld 3타입)</li>
+          <li data-i18n-html='{"ko":"<span class=\"chk\">✓</span> ERP / PLM 시스템 연동","en":"<span class=\"chk\">✓</span> Enterprise ERP / PLM System Integration"}'><span class="chk">✓</span> ERP / PLM 시스템 연동</li>
+        </ul>
+        <div style="border-radius:10px;overflow:hidden;border:2px solid var(--accent);box-shadow:var(--glow);margin-top:auto;">
+          <img src="images/enest-v-main.png" alt="E-NEST V 메인 화면" style="width:100%;display:block;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- vfeature section removed -->
+<section id="vfeature" style="display:none;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">E-NEST V EXCLUSIVE</span>
+      <h2 class="h2 reveal">형강 가공을 완성하는 V버전 3대 기능</h2>
+      <p class="section-sub">대형 CAD 시스템 없이 단독 실행되는 E-NEST V만의 전용 기능입니다. 반복 가공 작업의 효율과 현장 도면 품질을 동시에 높여줍니다.</p>
+    </div>
+
+    <!-- 기능 01 -->
+    <div class="vf-block reveal">
+      <div class="vf-copy">
+        <div class="vf-num">01</div>
+        <h3 class="vf-title">Endcut · Hole · Marking<br>매크로 3종 세트</h3>
+        <div class="vf-tag">가공 매크로 (Macro)</div>
+        <div class="vf-desc-block">
+          <p class="vf-label">원리</p>
+          <p class="vf-desc">형강 끝부분을 비스듬히 자르거나(Endcut), 나사 구멍(Hole)을 뚫거나, 마킹 패턴을 새기는 작업을 매번 새로 그리지 않습니다. "A타입 엔드컷", "30파이 구멍" 처럼 형상을 <b>매크로(템플릿)</b>로 등록해두고, 한 번의 명령으로 수백 개 부재에 일괄 적용합니다.</p>
+        </div>
+        <div class="vf-desc-block">
+          <p class="vf-label">왜 필수인가</p>
+          <p class="vf-desc">클릭 한 번으로 수백 개의 구멍·끝단 가공을 일괄 적용할 수 있어 설계 작업 시간을 대폭 줄입니다. 규격이 바뀌면 매크로 정의 하나만 수정하면 전체 부재에 자동 반영됩니다.</p>
+        </div>
+      </div>
+      <div class="vf-media">
+        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--glow);">
+          <img src="images/macro-endcut.png" alt="Endcut·Hole 매크로 적용 화면" style="width:100%;display:block;">
+        </div>
+      </div>
+    </div>
+
+    <div class="vf-divider"></div>
+
+    <!-- 기능 02 -->
+    <div class="vf-block vf-reverse reveal">
+      <div class="vf-copy">
+        <div class="vf-num">02</div>
+        <h3 class="vf-title">Web · Scallop<br>자동 시공</h3>
+        <div class="vf-tag">구조 안전 (Structural Safety)</div>
+        <div class="vf-desc-block">
+          <p class="vf-label">원리</p>
+          <p class="vf-desc">철골 뼈대가 십자로 만나는 부분은 용접부에 응력이 집중되어 균열이 발생하기 쉽습니다. 이를 방지하기 위해 모서리에 동그란 홈(Scallop)을 파는데, E-NEST V는 <b>Edge · Corner · Weld 3가지 타입</b>과 상단·중단·하단 위치를 조합해 Scallop 위치를 자동으로 계산·시공합니다.</p>
+        </div>
+        <div class="vf-desc-block">
+          <p class="vf-label">왜 필수인가</p>
+          <p class="vf-desc">Scallop 위치가 잘못되면 용접 불량이 발생하고 피로 파괴로 이어집니다. 수작업 계산은 오류와 누락 위험이 크지만, 자동 시공은 규격에 맞는 Scallop을 누락 없이 배치하고 도면 Symbol까지 자동 생성합니다.</p>
+        </div>
+      </div>
+      <div class="vf-media">
+        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--glow);">
+          <img src="images/web-scallop.png" alt="Web·Scallop 부재 상세 가공도" style="width:100%;display:block;">
+        </div>
+      </div>
+    </div>
+
+    <div class="vf-divider"></div>
+
+    <!-- 기능 03 -->
+    <div class="vf-block reveal">
+      <div class="vf-copy">
+        <div class="vf-num">03</div>
+        <h3 class="vf-title">Member 가공도 · BOM<br>자동 출력</h3>
+        <div class="vf-tag">도면 자동화 (Drawing Automation)</div>
+        <div class="vf-desc-block">
+          <p class="vf-label">원리</p>
+          <p class="vf-desc">형강 가공이 완료되면 현장 작업자가 보고 기계를 작동할 <b>상세 가공도(Member MCP)</b>와 부품 리스트(BOM 표)를 컴퓨터가 자동으로 양식에 맞춰 생성합니다. 개선(Bevel) 상세 확대도, 치수 기입, 부품 마킹 텍스트 정렬까지 자동 처리됩니다.</p>
+        </div>
+        <div class="vf-desc-block">
+          <p class="vf-label">왜 필수인가</p>
+          <p class="vf-desc">설계자가 수동으로 도면을 정리해 넘길 필요가 없습니다. 휴먼 에러가 사라지고 현장 전달 속도가 빨라집니다. PDF·DXF 출력을 지원하므로 별도 CAD 뷰어 없이 현장에서 즉시 확인 가능합니다.</p>
+        </div>
+      </div>
+      <div class="vf-media">
+        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--glow);">
+          <img src="images/member-cutting-plan.png" alt="Member 가공도 및 BOM 도면" style="width:100%;display:block;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ⑧ 핵심 기능 플로우
+══════════════════════════════════════ -->
+<section id="flow">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" data-i18n-text='{"ko":"WORKFLOW","en":"WORKFLOW"}'>WORKFLOW</span>
+      <h2 class="h2 reveal" data-i18n-text='{"ko":"CAD에서 절단기까지, 4단계 자동 연결","en":"CAD to Cutting Machine, 4-Step Auto Connection"}'>CAD에서 절단기까지, 4단계 자동 연결</h2>
+      <p class="section-sub" data-i18n-text='{"ko":"설계 데이터를 받아 절단 NC 데이터와 도면까지 자동 생성합니다.","en":"Receives design data and automatically generates cutting NC data and drawings."}'>설계 데이터를 받아 절단 NC 데이터와 도면까지 자동 생성합니다.</p>
+    </div>
+    <div class="flow-steps">
+
+      <div class="flow-step-item reveal">
+        <div class="flow-num">01</div>
+        <h4 data-i18n-text='{"ko":"PPI (부재 입력·편집)","en":"PPI (Part Import & Edit)"}'>PPI (부재 입력·편집)</h4>
+        <p data-i18n-text='{"ko":"CAD 데이터 로딩부터 2D 스케치 편집, 개선(Bevel) 설정, 텍스트·심볼 배치까지 부재 정보를 완성합니다.","en":"Completes part information from CAD loading, 2D sketch editing, beveling settings, to text and symbol placement."}'>CAD 데이터 로딩부터 2D 스케치 편집, 개선(Bevel) 설정, 텍스트·심볼 배치까지 부재 정보를 완성합니다.</p>
+      </div>
+
+      <div class="flow-step-item reveal">
+        <div class="flow-num">02</div>
+        <h4 data-i18n-text='{"ko":"자동 네스팅","en":"Auto Nesting"}'>자동 네스팅</h4>
+        <p data-i18n-text='{"ko":"판재·평철·형강 각각의 특성에 맞는 최적 배치 알고리즘이 가동됩니다. 수동·반자동 네스팅도 지원합니다.","en":"Optimized nesting algorithms trigger for plates, flat bars, and profiles. Also supports manual/semi-auto nesting."}'>판재·평철·형강 각각의 특성에 맞는 최적 배치 알고리즘이 가동됩니다. 수동·반자동 네스팅도 지원합니다.</p>
+      </div>
+
+      <div class="flow-step-item reveal">
+        <div class="flow-num">03</div>
+        <h4 data-i18n-text='{"ko":"절단 경로·순서 결정","en":"Cutting Path & Sequence"}'>절단 경로·순서 결정</h4>
+        <p data-i18n-text='{"ko":"열 변형을 최소화하는 절단 순서를 자동 결정합니다. NC 시뮬레이션으로 실제 절단 전 검증합니다.","en":"Automatically determines cutting sequence to minimize thermal distortion. Verifies before actual cutting via NC simulation."}'>열 변형을 최소화하는 절단 순서를 자동 결정합니다. NC 시뮬레이션으로 실제 절단 전 검증합니다.</p>
+      </div>
+
+      <div class="flow-step-item reveal">
+        <div class="flow-num">04</div>
+        <h4 data-i18n-text='{"ko":"NC 데이터·도면 출력","en":"NC Data & Drawing Output"}'>NC 데이터·도면 출력</h4>
+        <p data-i18n-text='{"ko":"절단 NC 데이터(ESSI/EIA)를 DNC 시스템으로 전달하고, 절단 계획도·상세 도면을 PDF/DXF로 출력합니다.","en":"Transfers cutting NC data (ESSI/EIA) to DNC and outputs cutting plans & detailed drawings in PDF/DXF formats."}'>절단 NC 데이터(ESSI/EIA)를 DNC 시스템으로 전달하고, 절단 계획도·상세 도면을 PDF/DXF로 출력합니다.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ⑤ 도면 출력 결과물
+══════════════════════════════════════ -->
+<section id="outputs">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" data-i18n-text='{"ko":"OUTPUT DOCUMENTS","en":"OUTPUT DOCUMENTS"}'>OUTPUT DOCUMENTS</span>
+      <h2 class="h2 reveal" data-i18n-text='{"ko":"출력 결과물","en":"Output Documents"}'>출력 결과물</h2>
+      <p class="section-sub" style="max-width:none;" data-i18n-text='{"ko":"E-NEST가 자동 생성하는 도면·계획도 유형입니다. PDF·DXF 포맷으로 DNC 시스템 및 현장에 바로 전달됩니다.","en":"Types of drawings and plans automatically generated by E-NEST. Directly transferred to DNC systems and shops in PDF/DXF formats."}'>E-NEST가 자동 생성하는 도면·계획도 유형입니다. PDF·DXF 포맷으로 DNC 시스템 및 현장에 바로 전달됩니다.</p>
+    </div>
+    <!-- Nesting 배치 결과물 2×2 -->
+    <p class="nesting-sub-head" data-i18n-text='{"ko":"Nesting 배치 결과물","en":"Nesting Layout Outputs"}'>Nesting 배치 결과물</p>
+    <div class="nesting-result-grid reveal">
+      <div class="output-card" data-img="images/nesting-profile.png" data-label="PROFILE AUTONESTING">
+        <div class="output-label">Profile AutoNesting</div>
+        <div class="output-img-wrap">
+          <img src="images/nesting-profile.png" alt="Profile AutoNesting 결과">
+        </div>
+      </div>
+      <div class="output-card" data-img="images/nesting-flatbar.png" data-label="FLATBAR AUTONESTING">
+        <div class="output-label">Flatbar AutoNesting</div>
+        <div class="output-img-wrap">
+          <img src="images/nesting-flatbar.png" alt="Flatbar AutoNesting 결과">
+        </div>
+      </div>
+      <div class="output-card" data-img="images/nesting-member.png" data-label="MEMBER AUTONESTING">
+        <div class="output-label">Member AutoNesting</div>
+        <div class="output-img-wrap">
+          <img src="images/nesting-member.png" alt="Member AutoNesting 결과">
+        </div>
+      </div>
+      <div class="output-card" data-img="images/nesting-plate.png" data-label="PLATE AUTONESTING">
+        <div class="output-label">Plate AutoNesting</div>
+        <div class="output-img-wrap">
+          <img src="images/nesting-plate.png" alt="Plate AutoNesting 결과">
+        </div>
+      </div>
+    </div>
+    <!-- 6종 출력 결과물 그리드 (NC Simulation 포함) -->
+    <p class="nesting-sub-head" data-i18n-text='{"ko":"도면 출력 결과물","en":"Drawing Outputs"}'>도면 출력 결과물</p>
+    <div class="output-grid reveal">
+      <div class="output-card" data-img="images/nc-simul.png" data-label="NC SIMULATION SCREEN">
+        <div class="output-label">NC Simulation</div>
+        <div class="output-img-wrap cover">
+          <img src="images/nc-simul.png" alt="NC 절단 시뮬레이션 화면" style="object-fit:cover;">
+        </div>
+      </div>
+      <div class="output-card" data-img="images/output-cutting-plan.png" data-label="CUTTING PLAN">
+        <div class="output-label">Cutting Plan</div>
+        <div class="output-img-wrap">
+          <img src="images/output-cutting-plan.png" alt="Cutting Plan 도면">
+        </div>
+      </div>
+      <div class="output-card" data-img="images/output-manual-cutting.png" data-label="MANUAL CUTTING PLAN">
+        <div class="output-label">Manual Cutting Plan</div>
+        <div class="output-img-wrap">
+          <img src="images/output-manual-cutting.png" alt="Manual Cutting Plan">
+        </div>
+      </div>
+      <div class="output-card" data-img="images/output-detail-drawing.png" data-label="DETAIL DRAWING">
+        <div class="output-label">Detail Drawing</div>
+        <div class="output-img-wrap">
+          <img src="images/output-detail-drawing.png" alt="Detail Drawing 상세 도면">
+        </div>
+      </div>
+      <div class="output-card" data-img="images/output-panel-marking.png" data-label="PANEL MARKING">
+        <div class="output-label">Panel Marking</div>
+        <div class="output-img-wrap">
+          <img src="images/output-panel-marking.png" alt="Panel Marking 도면">
+        </div>
+      </div>
+      <div class="output-card" data-img="images/output-member-mcp.png" data-label="MEMBER MCP">
+        <div class="output-label">Member MCP</div>
+        <div class="output-img-wrap">
+          <img src="images/output-member-mcp.png" alt="Member Cutting Plan">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ⑤-2 신뢰지표 + 납품 조선소 (dark)
+══════════════════════════════════════ -->
+<section id="trust" class="bg-dark">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow eyebrow-light" data-i18n-text='{"ko":"PROVEN TRACK RECORD","en":"PROVEN TRACK RECORD"}'>PROVEN TRACK RECORD</span>
+      <h2 class="h2 h2-light reveal" data-i18n-text='{"ko":"현장이 먼저 검증한 소프트웨어","en":"Software Proven on Site First"}'>현장이 먼저 검증한 소프트웨어</h2>
+    </div>
+    <div class="trust-stats reveal">
+      <div class="trust-stat-card">
+        <b>30%</b>
+        <span data-i18n-text='{"ko":"국내 대형 선박 적용률","en":"Domestic Large Vessel Adoption"}'>국내 대형 선박 적용률</span>
+      </div>
+      <div class="trust-stat-card">
+        <b data-i18n-text='{"ko":"25년+","en":"25 yrs+"}'>25년+</b>
+        <span data-i18n-html='{"ko":"솔루션 운영 연도<br>(2000년 ~)","en":"Solution Operation Years<br>(Since 2000)"}'>솔루션 운영 연도<br>(2000년 ~)</span>
+      </div>
+      <div class="trust-stat-card">
+        <b>15+</b>
+        <span data-i18n-text='{"ko":"국내외 주요 고객사","en":"Major Global Customers"}'>국내외 주요 고객사</span>
+      </div>
+      <div class="trust-stat-card">
+        <b>ESSI·EIA</b>
+        <span data-i18n-text='{"ko":"NC 포맷 지원","en":"NC Format Support"}'>NC 포맷 지원</span>
+      </div>
+    </div>
+    <div class="shipyard-section-title reveal">
+      <b data-i18n-text='{"ko":"주요 적용 조선소","en":"Major Applied Shipyards"}'>주요 적용 조선소</b>
+      <span data-i18n-text='{"ko":"국내 주요 조선소에서 씨에스캠의 E-NEST를 사용중입니다.","en":"CSCAM&#39;s E-NEST is in use at major shipyards in Korea."}'>국내 주요 조선소에서 씨에스캠의 E-NEST를 사용중입니다.</span>
+    </div>
+    <!-- 4열 조선소 납품 이력 -->
+    <div class="shipyard-grid reveal">
+
+      <!-- 현대중공업 -->
+      <div class="shipyard-card">
+        <div class="shipyard-header">
+          <div class="shipyard-header-text">
+            <span class="shipyard-name">현대중공업</span>
+            <span class="shipyard-name-en">HD Hyundai Heavy Industries</span>
+          </div>
+        </div>
+        <div class="shipyard-photo">
+          <img src="images/shipyard-hhi.jpg" alt="현대중공업 조선소">
+        </div>
+      </div>
+
+      <!-- 삼성중공업 -->
+      <div class="shipyard-card">
+        <div class="shipyard-header">
+          <div class="shipyard-header-text">
+            <span class="shipyard-name">삼성중공업</span>
+            <span class="shipyard-name-en">Samsung Heavy Industries</span>
+          </div>
+        </div>
+        <div class="shipyard-photo">
+          <img src="images/shipyard-shi.jpg" alt="삼성중공업 조선소">
+        </div>
+      </div>
+
+      <!-- 현대삼호중공업 -->
+      <div class="shipyard-card">
+        <div class="shipyard-header">
+          <div class="shipyard-header-text">
+            <span class="shipyard-name">현대삼호중공업</span>
+            <span class="shipyard-name-en">HD Hyundai Samho</span>
+          </div>
+        </div>
+        <div class="shipyard-photo">
+          <img src="images/shipyard-samho.jpg" alt="현대삼호중공업 조선소">
+        </div>
+      </div>
+
+      <!-- 그밖의 조선소 + -->
+      <div class="shipyard-card">
+        <div class="shipyard-header">
+          <div class="shipyard-header-text">
+            <span class="shipyard-name">그밖의 조선소 +</span>
+            <span class="shipyard-name-en">Other Shipyards</span>
+          </div>
+        </div>
+        <div class="shipyard-photo">
+          <img src="images/hero-smart-shipyard.png" alt="국내외 기타 조선소">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ⑧ 기술 검증 Q&A
+══════════════════════════════════════ -->
+<section id="verify" class="bg-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n-text='{"ko":"TECHNICAL VALIDATION","en":"TECHNICAL VALIDATION"}'>TECHNICAL VALIDATION</span>
+      <h2 class="h2 reveal" data-i18n-text='{"ko":"도입 전 확인하는 3가지","en":"3 Things to Verify Before Adoption"}'>도입 전 확인하는 3가지</h2>
+      <p class="section-sub" data-i18n-text='{"ko":"실제 도입을 검토하는 현장 엔지니어들이 가장 먼저 묻는 질문입니다.","en":"These are the most common questions asked by engineers reviewing actual deployment."}'>실제 도입을 검토하는 현장 엔지니어들이 가장 먼저 묻는 질문입니다.</p>
+    </div>
+    <div class="verify-grid">
+
+      <!-- Q1 -->
+      <div class="card hoverable verify-card reveal">
+        <div class="q-badge" aria-label="질문 1">Q</div>
+        <p class="verify-q" data-i18n-text='{"ko":"자동 네스팅의 실제 자재 이용률은?","en":"What is the actual material utilization of auto-nesting?"}'>자동 네스팅의 실제 자재 이용률은?</p>
+        <p class="verify-a" data-i18n-html='{"ko":"<b>강재 조건에 맞춰 자재 이용률을 높이도록 자동 최적화합니다.</b> E-NEST의 자동 네스팅은 유전자 알고리즘(Genetic Algorithm) 기반으로 판재·평철·형강 각각의 특성에 맞게 패턴·페어링을 개별 최적화합니다. Pre-Nesting(자재 발주용)과 Production Nesting(실생산용)을 분리해 발주 단계부터 이용률을 관리합니다. 구체적 수치는 현장 강재 규격 조건 기준으로 별도 안내 가능합니다.","en":"<b>Automatically optimized to increase utilization according to steel plate conditions.</b> E-NEST auto-nesting individually optimizes patterns and pairings for plates, flat bars, and profiles based on a Genetic Algorithm. We manage utilization from the ordering stage by separating Pre-Nesting (for ordering) and Production Nesting (for actual production). Specific figures can be guided separately based on on-site steel specification conditions."}'><b>강재 조건에 맞춰 자재 이용률을 높이도록 자동 최적화합니다.</b> E-NEST의 자동 네스팅은 유전자 알고리즘(Genetic Algorithm) 기반으로 판재·평철·형강 각각의 특성에 맞게 패턴·페어링을 개별 최적화합니다. Pre-Nesting(자재 발주용)과 Production Nesting(실생산용)을 분리해 발주 단계부터 이용률을 관리합니다. 구체적 수치는 현장 강재 규격 조건 기준으로 별도 안내 가능합니다.</p>
+      </div>
+
+      <!-- Q2 -->
+      <div class="card hoverable verify-card reveal">
+        <div class="q-badge" aria-label="질문 2">Q</div>
+        <p class="verify-q" data-i18n-text='{"ko":"ERP·MES와 연동이 가능한가요?","en":"Is integration with ERP and MES possible?"}'>ERP·MES와 연동이 가능한가요?</p>
+        <p class="verify-a" data-i18n-html='{"ko":"<b>가능합니다. 설계·생산 시스템에서 받은 데이터를 NC/DWG 출력과 DNC 전달까지 연결합니다.</b> E-NEST는 <b>AM(Aveva Marine) / ERP / PLM 시스템</b>에서 Gen 파일 및 BOM 데이터를 읽어 부재를 생성합니다. 네스팅·절단 경로 결정 후에는 NC 데이터와 도면을 <b>DNC 시스템</b>으로 직접 전달하는 파이프라인을 갖추고 있습니다. NC 출력 포맷은 <b>ESSI·EIA</b> 규격을 지원하며, 여러 장비를 같은 라인에서 운용하는 환경에도 대응합니다. MES 연동 상세 범위는 현장 요구사항 기준으로 별도 협의합니다.","en":"<b>Yes. We connect data received from design and production systems to NC/DWG output and DNC transfer.</b> E-NEST reads Gen files and BOM data from <b>AM (Aveva Marine) / ERP / PLM systems</b> to generate parts. After determining the nesting and cutting paths, we have a pipeline that directly transfers NC data and drawings to the <b>DNC system</b>. The NC output format supports <b>ESSI & EIA</b> standards, and we also respond to environments where multiple machines are operated on the same line. The detailed scope of MES integration is separately negotiated based on site requirements."}'><b>가능합니다. 설계·생산 시스템에서 받은 데이터를 NC/DWG 출력과 DNC 전달까지 연결합니다.</b> E-NEST는 <b>AM(Aveva Marine) / ERP / PLM 시스템</b>에서 Gen 파일 및 BOM 데이터를 읽어 부재를 생성합니다. 네스팅·절단 경로 결정 후에는 NC 데이터와 도면을 <b>DNC 시스템</b>으로 직접 전달하는 파이프라인을 갖추고 있습니다. NC 출력 포맷은 <b>ESSI·EIA</b> 규격을 지원하며, 여러 장비를 같은 라인에서 운용하는 환경에도 대응합니다. MES 연동 상세 범위는 현장 요구사항 기준으로 별도 협의합니다.</p>
+      </div>
+
+      <!-- Q3 -->
+      <div class="card hoverable verify-card reveal">
+        <div class="q-badge" aria-label="질문 3">Q</div>
+        <p class="verify-q" data-i18n-text='{"ko":"장비가 바뀌면 개발사에 다시 의뢰해야 하나요?","en":"Do we need to request the developer again if the machine changes?"}'>장비가 바뀌면 개발사에 다시 의뢰해야 하나요?</p>
+        <p class="verify-a" data-i18n-html='{"ko":"<b>장비별 NC 출력 규칙을 분리해 관리할 수 있어 장비 변경 대응이 빠릅니다.</b> E-NEST V의 Post Processor는 Lua·Python·VBScript 스크립트 기반입니다. NC 출력 규칙을 스크립트 파일로 분리해두었기 때문에, 장비가 바뀌어도 현장 조건에 맞춰 포스트 프로세서를 조정할 수 있습니다. 여러 포스트 프로세서를 동시에 실행하는 것도 지원합니다.","en":"<b>Response to equipment changes is fast because NC output rules for each machine can be managed separately.</b> E-NEST V&#39;s Post Processor is based on Lua, Python, and VBScript scripting. Because the NC output rules are separated into script files, the post-processor can be adjusted to match site conditions even if the machine changes. It also supports running multiple post-processors simultaneously."}'><b>장비별 NC 출력 규칙을 분리해 관리할 수 있어 장비 변경 대응이 빠릅니다.</b> E-NEST V의 Post Processor는 Lua·Python·VBScript 스크립트 기반입니다. NC 출력 규칙을 스크립트 파일로 분리해두었기 때문에, 장비가 바뀌어도 현장 조건에 맞춰 포스트 프로세서를 조정할 수 있습니다. 여러 포스트 프로세서를 동시에 실행하는 것도 지원합니다.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ⑨ 고객사 레퍼런스
+══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     ⑩ 문의 (dark)
+══════════════════════════════════════ -->
+<section id="contact" class="bg-dark">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Left -->
+      <div>
+        <span class="eyebrow eyebrow-light" data-i18n-text='{"ko":"GET IN TOUCH","en":"GET IN TOUCH"}'>GET IN TOUCH</span>
+        <h2 class="h2 h2-light reveal" style="margin-bottom:20px;" data-i18n-html='{"ko":"제품 도입 및<br>기술 상담 문의","en":"Software Adoption<br>& Technical Consultation"}'>제품 도입 및<br>기술 상담 문의</h2>
+        <p class="body-text reveal" style="margin-bottom:30px;color:var(--on-dark-dim);" data-i18n-text='{"ko":"씨에스캠의 E-NEST 네스팅 소프트웨어는 조선·금속 가공 현장의 자재 계획, 자동 네스팅, NC 데이터 출력, DNC 연계를 하나의 흐름으로 연결합니다. 도입 환경, 기존 ERP·MES·DNC 연동 범위, 라이선스 구성, 기술 검토 사항을 담당 엔지니어가 상세히 안내해 드립니다.","en":"CSCAM E-NEST nesting software connects material planning, automatic nesting, NC output, and DNC integration into one workflow for shipbuilding and metal fabrication sites. Our engineers provide detailed guidance on deployment environments, ERP/MES/DNC integration scope, license configuration, and technical review items."}'>씨에스캠의 E-NEST 네스팅 소프트웨어는 조선·금속 가공 현장의 자재 계획, 자동 네스팅, NC 데이터 출력, DNC 연계를 하나의 흐름으로 연결합니다. 도입 환경, 기존 ERP·MES·DNC 연동 범위, 라이선스 구성, 기술 검토 사항을 담당 엔지니어가 상세히 안내해 드립니다.</p>
+        <div class="contact-info reveal">
+          <div class="contact-block">
+            <h4 data-i18n-text='{"ko":"기술상담 대표전화","en":"TECHNICAL CONSULTATION PHONE"}'>기술상담 대표전화</h4>
+            <span class="contact-phone-label" data-i18n-text='{"ko":"광주 본사","en":"Gwangju HQ"}'>광주 본사</span>
+            <div class="contact-phone">062-946-1900</div>
+            <span class="contact-phone-label" style="margin-top:12px;" data-i18n-text='{"ko":"성남 지사","en":"Seongnam Office"}'>성남 지사</span>
+            <div class="contact-phone">031-737-7600</div>
+          </div>
+          <div class="contact-block">
+            <h4 data-i18n-text='{"ko":"본사 주소","en":"HQ ADDRESS"}'>본사 주소</h4>
+            <p class="contact-address" data-i18n-text='{"ko":"전남광주특별시 광산구 평동산단로 239-15","en":"239-15, Pyeongdongsandan-ro, Gwangsan-gu, Gwangju, Korea"}'>전남광주특별시 광산구 평동산단로 239-15</p>
+          </div>
+          <div class="contact-block">
+            <h4 data-i18n-text='{"ko":"기술상담 시간","en":"TECHNICAL CONSULTATION HOURS"}'>기술상담 시간</h4>
+            <p class="contact-address" data-i18n-text='{"ko":"평일 08:30 ~ 오후 5:30 (주말·공휴일 휴무)","en":"Weekdays 08:30 ~ 17:30 (Closed on weekends and holidays)"}'>평일 08:30 ~ 오후 5:30 (주말·공휴일 휴무)</p>
+          </div>
+        </div>
+      </div>
+      <!-- Right: Form -->
+      <div class="reveal">
+        <div class="form-card">
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="f-name" data-i18n-text='{"ko":"담당자 성함 *","en":"Name *"}'>담당자 성함 *</label>
+                <input type="text" id="f-name" name="name" placeholder="성함을 입력해 주세요" required autocomplete="name" data-i18n-attr='{"placeholder":{"ko":"성함을 입력해 주세요","en":"Enter your name"}}'>
+              </div>
+              <div class="field">
+                <label for="f-company" data-i18n-text='{"ko":"회사명 / 부서","en":"Company / Department"}'>회사명 / 부서</label>
+                <input type="text" id="f-company" name="company" placeholder="회사명과 부서를 입력해 주세요" autocomplete="organization" data-i18n-attr='{"placeholder":{"ko":"회사명과 부서를 입력해 주세요","en":"Enter company and department"}}'>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-phone" data-i18n-text='{"ko":"연락처 (전화번호 또는 메일) *","en":"Contact Info (Phone or Email) *"}'>연락처 (전화번호 또는 메일) *</label>
+              <input type="text" id="f-phone" name="phone" placeholder="연락받으실 연락처를 입력해 주세요" required autocomplete="tel" data-i18n-attr='{"placeholder":{"ko":"연락받으실 연락처를 입력해 주세요","en":"Enter phone number or email address"}}'>
+            </div>
+            <div class="field">
+              <label for="f-message" data-i18n-text='{"ko":"문의 요구사항 상세","en":"Detailed Inquiry Requirements"}'>문의 요구사항 상세</label>
+              <textarea id="f-message" name="message" placeholder="도입 검토 중인 제품, 연동 시스템, 현장 환경, 라이선스 범위 등을 편하게 기재해 주세요" data-i18n-attr='{"placeholder":{"ko":"도입 검토 중인 제품, 연동 시스템, 현장 환경, 라이선스 범위 등을 편하게 기재해 주세요","en":"Describe the product, integration systems, site environment, and license scope under review"}}'></textarea>
+            </div>
+            <button type="submit" class="submit-btn" data-i18n-text='{"ko":"상담 문의 접수","en":"Submit Consultation Inquiry"}'>상담 문의 접수</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo" data-i18n-html='{"ko":"CSCAM <span>SOFTWARE DIVISION</span>","en":"CSCAM <span>SOFTWARE DIVISION</span>"}'>CSCAM <span>SOFTWARE DIVISION</span></div>
+      <nav class="footer-nav">
+        <a href="#what" data-i18n-text='{"ko":"제품소개","en":"Product Intro"}'>제품소개</a>
+        <a href="#tech" data-i18n-text='{"ko":"핵심기술","en":"Core Tech"}'>핵심기술</a>
+        <a href="#lineup" data-i18n-text='{"ko":"제품 라인업","en":"Product Lineup"}'>제품 라인업</a>
+        <a href="#flow" data-i18n-text='{"ko":"기능 플로우","en":"Workflow"}'>기능 플로우</a>
+        <a href="#clients" data-i18n-text='{"ko":"고객사","en":"Clients"}' style="display:none;">고객사</a>
+        <a href="#contact" data-i18n-text='{"ko":"문의","en":"Inquiry"}'>문의</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n-html='{"ko":"&copy; 2025 씨에스캠주식회사. All rights reserved.","en":"&copy; 2025 CSCAM Co., Ltd. All rights reserved."}'>&copy; 2025 씨에스캠주식회사. All rights reserved.</span>
+      <span class="footer-addr" data-i18n-text='{"ko":"전남광주특별시 광산구 평동산단로 239-15","en":"239-15, Pyeongdongsandan-ro, Gwangsan-gu, Gwangju, Korea"}'>전남광주특별시 광산구 평동산단로 239-15</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button class="top-btn" id="top-btn" aria-label="맨 위로">↑</button>
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── 1. Reveal animation (IntersectionObserver) ── */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ── 2. Mobile drawer ── */
+  var menuBtn = document.getElementById('menu-btn');
+  var closeBtn = document.getElementById('close-btn');
+  var drawer = document.getElementById('mobile-drawer');
+  var overlay = document.getElementById('drawer-overlay');
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeDrawer);
+  });
+
+  /* ── 3. Family bar dynamic URLs ── */
+  var familyUrls = {
+    '3dprinter': '../3dprinter/index.html',
+    'engraving':  '../machine/engraving/index.html',
+    'marking':    '../machine/marking/index.html',
+    'sw':         '#hero'
+  };
+  document.querySelectorAll('[data-family]').forEach(function (a) {
+    var key = a.getAttribute('data-family');
+    if (familyUrls[key]) a.href = familyUrls[key];
+  });
+
+  /* ── 4. Header scroll ── */
+  var header = document.getElementById('site-header');
+  var topBtn = document.getElementById('top-btn');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 60) {
+      header.classList.add('scrolled');
+      topBtn.classList.add('visible');
+    } else {
+      header.classList.remove('scrolled');
+      topBtn.classList.remove('visible');
+    }
+  }, { passive: true });
+  if (topBtn) topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* ── 5. Language toggle ── */
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var lang = btn.getAttribute('data-lang');
+      var url = new URL(location.href);
+      url.searchParams.set('lang', lang);
+      location.href = url.toString();
+    });
+  });
+
+  /* ── 6. Contact form (basic prevent-default) ── */
+  var form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+      form.reset();
+    });
+  }
+
+})();
+</script>
+
+<!-- 라이트박스 -->
+<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true">
+  <span class="lb-close" id="lb-close" aria-label="닫기">&times;</span>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-label" id="lb-label"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lb-overlay');
+  var lbImg   = document.getElementById('lb-img');
+  var lbLabel = document.getElementById('lb-label');
+
+  document.querySelectorAll('.output-card[data-img]').forEach(function(card){
+    card.addEventListener('click', function(){
+      lbImg.src = card.dataset.img;
+      lbLabel.textContent = card.dataset.label || '';
+      overlay.classList.add('active');
+    });
+  });
+
+  function close(){ overlay.classList.remove('active'); lbImg.src=''; }
+  document.getElementById('lb-close').addEventListener('click', close);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+<script>
+// Family site links: sibling folders on the same host/deployment.
+function cscamApplyFamilyLinks() {
+  const isLocal = location.protocol === "file:";
+  const isGhPages = location.hostname === "cih2000.github.io";
+  const GH = "https://cih2000.github.io";
+  const familyLinks = document.querySelectorAll(".family-bar-nav a, .drawer a");
+  familyLinks.forEach(link => {
+    const text = link.textContent.trim().toUpperCase();
+    if (text.includes("CNC")) {
+      link.href = isLocal ? "../cscam-cnc/index.html" : isGhPages ? GH + "/cscam-cnc/index.html" : "https://cnc.cscam.co.kr/";
+    } else if (text.includes("LMS")) {
+      link.href = isLocal ? "../cscam-lms/index.html" : isGhPages ? GH + "/cscam-lms/index.html" : "https://lms.cscam.co.kr/";
+    } else if (text.includes("3D PRINTER")) {
+      link.href = isLocal ? "../cscam-3dp/index.html" : isGhPages ? GH + "/cscam-3dp/index.html" : "https://3dp.cscam.co.kr/";
+    } else if (text.includes("LASER") || text.includes("TEXTURING") || text.includes("ENGRAVING")) {
+      link.href = isLocal ? "../cscam-engraving/index.html" : isGhPages ? GH + "/cscam-engraving/index.html" : "https://laser.cscam.co.kr/";
+    } else if (text.includes("MARKING")) {
+      link.href = isLocal ? "../cscam-marking/index.html" : isGhPages ? GH + "/cscam-marking/index.html" : "https://marking.cscam.co.kr/";
+    } else if (text.includes("SOFTWARE")) {
+      link.href = "#hero";
+    }
+  });
+  const logoLinks = document.querySelectorAll(".brand-logo-link");
+  logoLinks.forEach(link => {
+    link.href = isLocal ? "../cscam-hub/index.html" : isGhPages ? GH + "/cscam-hub/index.html" : "https://cscam.co.kr/";
+  });
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", cscamApplyFamilyLinks);
+} else {
+  cscamApplyFamilyLinks();
+}
+window.addEventListener("load", cscamApplyFamilyLinks);
+</script>
+</body>
+</html>
