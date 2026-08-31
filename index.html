@@ -90,6 +90,7 @@ section{padding:var(--section-y) 0;position:relative;scroll-margin-top:110px;}
 .reveal:not(.is-visible){opacity:0;transform:translateY(18px);}
 .hero-fadein{opacity:0;transform:translateY(16px);animation:heroIn .85s ease .1s forwards;}
 @keyframes heroIn{to{opacity:1;transform:translateY(0);}}
+@keyframes laserSweep{0%,100%{left:6%;}50%{left:88%;}}
 
 /* ────────────────────────────────────────
    HEADER
@@ -170,6 +171,13 @@ header.scrolled{box-shadow:0 4px 24px rgba(0,107,98,.08);}
     linear-gradient(90deg, rgba(0,173,158,.04) 1px, transparent 1px),
     linear-gradient(100deg,rgba(3,22,20,.92) 0%,rgba(3,22,20,.72) 42%,rgba(3,22,20,.32) 72%,rgba(3,22,20,.1) 100%);
   background-size: 44px 44px, 44px 44px, 100% 100%;
+}
+.hero-laser-sweep{
+  position:absolute;top:-5%;bottom:-5%;width:1px;left:6%;
+  background:linear-gradient(180deg,transparent,rgba(0,173,158,.45) 45%,rgba(0,173,158,.45) 55%,transparent);
+  box-shadow:0 0 10px 2px rgba(0,173,158,.25);
+  animation:laserSweep 4.2s ease-in-out infinite;
+  pointer-events:none;z-index:0;
 }
 .hero-grid{display:grid;gap:40px;align-items:start;position:relative;z-index:1;}
 .hero-copy h1{
@@ -601,6 +609,7 @@ footer{background:#030e0d;padding:44px 0 28px;border-top:1px solid rgba(255,255,
 ══════════════════════════════════════ -->
 <section id="hero">
   <div class="hero-bg-grad"></div>
+  <div class="hero-laser-sweep"></div>
   <div class="container">
     <div class="hero-grid">
       <!-- Left copy -->
