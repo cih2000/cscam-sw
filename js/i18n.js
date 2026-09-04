@@ -3,9 +3,9 @@
   var params = new URLSearchParams(location.search);
   var lang = params.get('lang') || 'ko';
   window.LANG = lang;
-  document.documentElement.lang = lang === 'en' ? 'en' : 'ko';
+  document.documentElement.lang = (lang === 'en' || lang === 'zh') ? lang : 'ko';
 
-  window.t = function(ko, en){ return window.LANG === 'en' ? (en || ko) : ko; };
+  window.t = function(ko, en, zh){ return window.LANG === 'en' ? (en || ko) : window.LANG === 'zh' ? (zh || en || ko) : ko; };
 
   document.addEventListener('DOMContentLoaded', function(){
     // data-i18n-text 속성 처리

@@ -575,6 +575,8 @@ footer{background:#030e0d;padding:44px 0 28px;border-top:1px solid rgba(255,255,
           <a href="?lang=ko" class="lang-btn" data-lang="ko" aria-label="한국어">KR</a>
           <span>·</span>
           <a href="?lang=en" class="lang-btn" data-lang="en" aria-label="English">EN</a>
+          <span>·</span>
+          <a href="?lang=zh" class="lang-btn" data-lang="zh" aria-label="中文">CH</a>
         </div>
       </div>
       <button class="menu-btn" id="menu-btn" aria-label="메뉴 열기" aria-expanded="false">
@@ -606,7 +608,7 @@ footer{background:#030e0d;padding:44px 0 28px;border-top:1px solid rgba(255,255,
     <div class="brand-wordmark"><span style="font-weight:700;">CS</span><span style="font-weight:400;">CAM</span></div>
     <div style="width:1px;height:22px;background:#e2e6ec;margin:0 4px;"></div>
     <div class="lang-switch">
-      <a href="?lang=ko" class="lang-btn" data-lang="ko">KR</a><span>·</span><a href="?lang=en" class="lang-btn" data-lang="en">EN</a>
+      <a href="?lang=ko" class="lang-btn" data-lang="ko">KR</a><span>·</span><a href="?lang=en" class="lang-btn" data-lang="en">EN</a><span>·</span><a href="?lang=zh" class="lang-btn" data-lang="zh">CH</a>
     </div>
   </div>
 </nav>
@@ -1461,11 +1463,13 @@ function cscamApplyFamilyLinks() {
   const isLocal = location.protocol === "file:";
   const isGhPages = location.hostname === "cih2000.github.io";
   const GH = "https://cih2000.github.io";
-  const en = window.LANG === "en";
-  // Targets with a dedicated /en/ folder (separate page per language).
-  const folderUrl = (local, prod) => isLocal ? ("../" + local + "/" + (en ? "en/index.html" : "index.html")) : isGhPages ? (GH + "/" + local + "/" + (en ? "en/index.html" : "index.html")) : ("https://" + prod + "/" + (en ? "en/index.html" : ""));
-  // Targets that use a ?lang=en query on a single page.
-  const queryUrl = (local, prod) => isLocal ? ("../" + local + "/index.html" + (en ? "?lang=en" : "")) : isGhPages ? (GH + "/" + local + "/index.html" + (en ? "?lang=en" : "")) : ("https://" + prod + "/" + (en ? "?lang=en" : ""));
+  const lang = window.LANG || "ko";
+  const folderSuffix = lang === "ko" ? "index.html" : (lang + "/index.html");
+  const querySuffix = lang === "ko" ? "" : ("?lang=" + lang);
+  // Targets with a dedicated /en//zh/ folder (separate page per language).
+  const folderUrl = (local, prod) => isLocal ? ("../" + local + "/" + folderSuffix) : isGhPages ? (GH + "/" + local + "/" + folderSuffix) : ("https://" + prod + "/" + (lang === "ko" ? "" : folderSuffix));
+  // Targets that use a ?lang= query on a single page.
+  const queryUrl = (local, prod) => isLocal ? ("../" + local + "/index.html" + querySuffix) : isGhPages ? (GH + "/" + local + "/index.html" + querySuffix) : ("https://" + prod + "/" + querySuffix);
   const familyLinks = document.querySelectorAll(".family-bar-nav a, .drawer a");
   familyLinks.forEach(link => {
     const text = link.textContent.trim().toUpperCase();
