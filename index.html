@@ -197,32 +197,32 @@ header.scrolled{box-shadow:0 4px 24px rgba(0,107,98,.08);}
 .hero-shortcut-link .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;background:#4dd9d0;}
 .hero-shortcut-link b{display:block;font-family:var(--ff-head);font-weight:700;font-size:15px;color:#fff;}
 .hero-shortcut-link small{display:block;font-family:var(--ff-mono);font-size:10.5px;color:#b6f2ec;letter-spacing:.03em;margin-top:2px;}
-.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 28px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);max-width:560px;}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 28px;margin-top:22px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);max-width:680px;}
 .stat b{display:block;font-family:var(--ff-mono);font-weight:700;font-size:clamp(20px,2.4vw,24px);color:#fff;letter-spacing:-.01em;}
-.stat span{font-size:11px;color:var(--on-dark-dim);letter-spacing:.03em;}
+.stat span{font-size:11px;color:var(--on-dark-dim);letter-spacing:.03em;white-space:nowrap;}
 
 @media(min-width:880px){
   .hero-grid{grid-template-columns:54% 46%;gap:56px;}
   .hero-links{flex-direction:row;}
-  .hero-stats{grid-template-columns:repeat(4,1fr);}
+  .hero-stats{grid-template-columns:1.6fr 1fr 1fr 1fr;}
 }
 .hero-fact-bar{
   position:relative;z-index:2;
-  margin-top:40px;
-  padding:18px 24px;
+  margin-top:20px;
+  padding:10px 18px;
   background:rgba(0,173,158,.08);
   border:1px solid rgba(0,173,158,.2);
   border-radius:10px;
-  display:flex;align-items:center;gap:16px;
+  display:flex;align-items:center;gap:12px;
 }
 .hero-fact-bar .fact-icon{
-  flex-shrink:0;width:36px;height:36px;
+  flex-shrink:0;width:26px;height:26px;
   background:rgba(0,173,158,.15);border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  color:#4dd9d0;font-size:18px;
+  color:#4dd9d0;font-size:13px;
 }
 .hero-fact-bar p{
-  margin:0;font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.82);word-break:keep-all;
+  margin:0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.82);word-break:keep-all;
 }
 .hero-fact-bar strong{color:#4dd9d0;font-weight:700;}
 @media(max-width:600px){
