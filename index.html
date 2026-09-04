@@ -1461,30 +1461,31 @@ function cscamApplyFamilyLinks() {
   const isLocal = location.protocol === "file:";
   const isGhPages = location.hostname === "cih2000.github.io";
   const GH = "https://cih2000.github.io";
-  const withLang = (url) => {
-    if (window.LANG !== "en" || url.charAt(0) === "#") return url;
-    return url + (url.includes("?") ? "&" : "?") + "lang=en";
-  };
+  const en = window.LANG === "en";
+  // Targets with a dedicated /en/ folder (separate page per language).
+  const folderUrl = (local, prod) => isLocal ? ("../" + local + "/" + (en ? "en/index.html" : "index.html")) : isGhPages ? (GH + "/" + local + "/" + (en ? "en/index.html" : "index.html")) : ("https://" + prod + "/" + (en ? "en/index.html" : ""));
+  // Targets that use a ?lang=en query on a single page.
+  const queryUrl = (local, prod) => isLocal ? ("../" + local + "/index.html" + (en ? "?lang=en" : "")) : isGhPages ? (GH + "/" + local + "/index.html" + (en ? "?lang=en" : "")) : ("https://" + prod + "/" + (en ? "?lang=en" : ""));
   const familyLinks = document.querySelectorAll(".family-bar-nav a, .drawer a");
   familyLinks.forEach(link => {
     const text = link.textContent.trim().toUpperCase();
     if (text.includes("CNC")) {
-      link.href = withLang(isLocal ? "../cscam-cnc/index.html" : isGhPages ? GH + "/cscam-cnc/index.html" : "https://cnc.cscam.co.kr/");
+      link.href = folderUrl("cscam-cnc", "cnc.cscam.co.kr");
     } else if (text.includes("LMS")) {
-      link.href = withLang(isLocal ? "../cscam-lms/index.html" : isGhPages ? GH + "/cscam-lms/index.html" : "https://lms.cscam.co.kr/");
+      link.href = folderUrl("cscam-lms", "lms.cscam.co.kr");
     } else if (text.includes("3D PRINTER")) {
-      link.href = withLang(isLocal ? "../cscam-3dp/index.html" : isGhPages ? GH + "/cscam-3dp/index.html" : "https://3dp.cscam.co.kr/");
+      link.href = queryUrl("cscam-3dp", "3dp.cscam.co.kr");
     } else if (text.includes("LASER") || text.includes("TEXTURING") || text.includes("ENGRAVING")) {
-      link.href = withLang(isLocal ? "../cscam-engraving/index.html" : isGhPages ? GH + "/cscam-engraving/index.html" : "https://laser.cscam.co.kr/");
+      link.href = queryUrl("cscam-engraving", "laser.cscam.co.kr");
     } else if (text.includes("MARKING")) {
-      link.href = withLang(isLocal ? "../cscam-marking/index.html" : isGhPages ? GH + "/cscam-marking/index.html" : "https://marking.cscam.co.kr/");
+      link.href = queryUrl("cscam-marking", "marking.cscam.co.kr");
     } else if (text.includes("SOFTWARE")) {
       link.href = "#hero";
     }
   });
   const logoLinks = document.querySelectorAll(".brand-logo-link");
   logoLinks.forEach(link => {
-    link.href = withLang(isLocal ? "../cscam-hub/index.html" : isGhPages ? GH + "/cscam-hub/index.html" : "https://cscam.co.kr/");
+    link.href = folderUrl("cscam-hub", "cscam.co.kr");
   });
 }
 if (document.readyState === "loading") {
