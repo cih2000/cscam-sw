@@ -147,11 +147,11 @@ header.scrolled{box-shadow:0 4px 24px rgba(0,107,98,.08);}
    ① HERO
 ───────────────────────────────────────── */
 #hero{
-  min-height:92vh;
-  padding-top:calc(100px + 52px);
+  height:815px;
+  padding-top:60px;
   padding-bottom:72px;
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   background:#031614;
   position:relative;
   overflow:hidden;
@@ -180,16 +180,23 @@ header.scrolled{box-shadow:0 4px 24px rgba(0,107,98,.08);}
   pointer-events:none;z-index:0;
 }
 .hero-grid{display:grid;gap:40px;align-items:start;position:relative;z-index:1;}
+.hero-model-kicker{font-family:var(--ff-head);font-style:italic;font-weight:600;font-size:clamp(16px,3vw,22px);color:#4dd9d0;margin-bottom:10px;}
 .hero-copy h1{
-  font-family:var(--ff-head);font-weight:800;
-  font-size:clamp(28px,4.2vw,50px);
-  line-height:1.15;letter-spacing:-.03em;
+  font-family:var(--ff-head);font-weight:700;
+  font-size:clamp(26px,4.6vw,50px);
+  line-height:1.2;letter-spacing:-.02em;
   color:#fff;margin-bottom:22px;word-break:keep-all;
 }
 .hero-copy h1 .accent-word{color:#4dd9d0;}
-#hero .eyebrow{color:#4dd9d0;}
-.hero-copy p{font-size:16px;color:var(--on-dark-dim);line-height:1.9;max-width:520px;margin:0 0 34px;word-break:keep-all;}
+#hero .eyebrow{color:#4dd9d0;font-size:11px;letter-spacing:.2em;}
+.hero-copy p{font-size:15px;color:var(--on-dark-dim);line-height:1.75;max-width:520px;margin:0 0 34px;word-break:keep-all;}
 .hero-links{display:flex;flex-direction:column;align-items:flex-start;gap:14px;}
+.hero-shortcut-links{display:flex;flex-direction:column;gap:12px;max-width:480px;margin-top:22px;}
+.hero-shortcut-link{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:8px;border:1px solid rgba(0,173,158,.4);background:rgba(0,173,158,.08);transition:all .2s ease;}
+.hero-shortcut-link:hover{border-color:#4dd9d0;background:rgba(0,173,158,.18);transform:translateX(4px);}
+.hero-shortcut-link .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;background:#4dd9d0;}
+.hero-shortcut-link b{display:block;font-family:var(--ff-head);font-weight:700;font-size:15px;color:#fff;}
+.hero-shortcut-link small{display:block;font-family:var(--ff-mono);font-size:10.5px;color:#b6f2ec;letter-spacing:.03em;margin-top:2px;}
 .hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 28px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);max-width:560px;}
 .stat b{display:block;font-family:var(--ff-mono);font-weight:700;font-size:clamp(20px,2.4vw,24px);color:#fff;letter-spacing:-.01em;}
 .stat span{font-size:11px;color:var(--on-dark-dim);letter-spacing:.03em;}
@@ -604,6 +611,7 @@ footer{background:#030e0d;padding:44px 0 28px;border-top:1px solid rgba(255,255,
   </div>
 </nav>
 
+<div style="height:100px;width:100%;"></div>
 <!-- ══════════════════════════════════════
      ① HERO
 ══════════════════════════════════════ -->
@@ -615,15 +623,28 @@ footer{background:#030e0d;padding:44px 0 28px;border-top:1px solid rgba(255,255,
       <!-- Left copy -->
       <div class="hero-copy">
         <span class="eyebrow hero-fadein" style="animation-delay:.05s" data-i18n-text='{"ko":"NESTING SOFTWARE","en":"NESTING SOFTWARE"}'>NESTING SOFTWARE</span>
+        <div class="hero-model-kicker hero-fadein" style="animation-delay:.1s">E-NEST G · E-NEST V</div>
         <h1 class="hero-fadein" style="animation-delay:.15s" data-i18n-html='{"ko":"E-NEST — 강판 위의 <span class=\"accent-word\">최적 해법</span>을<br>찾는 네스팅 소프트웨어","en":"E-NEST — Nesting Software Finding the <span class=\"accent-word\">Optimal Solution</span><br>on Steel Plates"}'>
           E-NEST — 강판 위의 <span class="accent-word">최적 해법</span>을<br>찾는 네스팅 소프트웨어
         </h1>
         <p class="hero-fadein" style="animation-delay:.25s" data-i18n-text='{"ko":"대형 선박 30%가 씨에스캠의 E-NEST로 제작됩니다. 조선·금속 가공 현장의 자동 네스팅 전 과정을 소프트웨어 하나로 해결합니다.","en":"30% of large vessels are built with CSCAM&#39;s E-NEST. Solve the entire automatic nesting process for shipbuilding and metal fabrication with a single software."}'>
           대형 선박 30%가 씨에스캠의 E-NEST로 제작됩니다. 조선·금속 가공 현장의 자동 네스팅 전 과정을 소프트웨어 하나로 해결합니다.
         </p>
-        <div class="hero-links hero-fadein" style="animation-delay:.35s">
-          <a href="#what" class="btn btn-primary" data-i18n-text='{"ko":"제품 소개 보기","en":"View Product Intro"}'>제품 소개 보기</a>
-          <a href="#contact" class="btn btn-ghost" data-i18n-text='{"ko":"문의하기","en":"Inquire Now"}'>문의하기</a>
+        <div class="hero-shortcut-links hero-fadein" style="animation-delay:.35s">
+          <a href="#tech" class="hero-shortcut-link">
+            <span class="dot"></span>
+            <div>
+              <b data-i18n-text='{"ko":"E-NEST를 구성하는 3가지 핵심 기술","en":"3 Core Technologies of E-NEST"}'>E-NEST를 구성하는 3가지 핵심 기술</b>
+              <small data-i18n-text='{"ko":"핵심기술 자세히 보기","en":"Learn more about Core Technology"}'>핵심기술 자세히 보기</small>
+            </div>
+          </a>
+          <a href="#verify" class="hero-shortcut-link">
+            <span class="dot"></span>
+            <div>
+              <b data-i18n-text='{"ko":"도입 전 확인하는 3가지","en":"3 Things to Verify Before Adoption"}'>도입 전 확인하는 3가지</b>
+              <small data-i18n-text='{"ko":"기술 검증 자세히 보기","en":"See Technical Validation"}'>기술 검증 자세히 보기</small>
+            </div>
+          </a>
         </div>
         <!-- Stats row -->
         <div class="hero-stats hero-fadein" style="animation-delay:.45s">
