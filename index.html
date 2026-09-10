@@ -1469,9 +1469,15 @@ function cscamApplyFamilyLinks() {
   const folderSuffix = lang === "ko" ? "index.html" : (lang + "/index.html");
   const querySuffix = lang === "ko" ? "" : ("?lang=" + lang);
   // Targets with a dedicated /en//zh/ folder (separate page per language).
-  const folderUrl = (local, prod) => isLocal ? ("../" + local + "/" + folderSuffix) : isGhPages ? (GH + "/" + local + "/" + folderSuffix) : ("https://" + prod + "/" + (lang === "ko" ? "" : folderSuffix));
+  const PROD_BASE = {
+    "cscam.co.kr": "https://cscam.co.kr", "www.cscam.co.kr": "https://cscam.co.kr",
+    "cnc.cscam.co.kr": "https://cscam.co.kr/cnc", "lms.cscam.co.kr": "https://cscam.co.kr/lms",
+    "3dp.cscam.co.kr": "https://cscam.co.kr/3dp", "laser.cscam.co.kr": "https://cscam.co.kr/laser",
+    "marking.cscam.co.kr": "https://cscam.co.kr/marking", "sw.cscam.co.kr": "https://cscam.co.kr/sw"
+  };
+  const folderUrl = (local, prod) => isLocal ? ("../" + local + "/" + folderSuffix) : isGhPages ? (GH + "/" + local + "/" + folderSuffix) : ((PROD_BASE[prod] || ("https://" + prod)) + "/" + (lang === "ko" ? "" : folderSuffix));
   // Targets that use a ?lang= query on a single page.
-  const queryUrl = (local, prod) => isLocal ? ("../" + local + "/index.html" + querySuffix) : isGhPages ? (GH + "/" + local + "/index.html" + querySuffix) : ("https://" + prod + "/" + querySuffix);
+  const queryUrl = (local, prod) => isLocal ? ("../" + local + "/index.html" + querySuffix) : isGhPages ? (GH + "/" + local + "/index.html" + querySuffix) : ((PROD_BASE[prod] || ("https://" + prod)) + "/" + querySuffix);
   const familyLinks = document.querySelectorAll(".family-bar-nav a, .drawer a");
   familyLinks.forEach(link => {
     const text = link.textContent.trim().toUpperCase();
