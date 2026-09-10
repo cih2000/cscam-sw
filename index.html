@@ -121,8 +121,9 @@ header.scrolled{box-shadow:0 4px 24px rgba(0,107,98,.08);}
 .header-utility{display:flex;align-items:center;gap:10px;}
 .brand-wordmark{display:flex;align-items:baseline;font-family:Verdana,'Noto Sans KR',sans-serif;font-size:23px;color:#1e5aa8;}
 .header-divider{width:1px;height:36px;background:#e2e6ec;margin:0 4px;}
-.lang-switch{display:flex;gap:6px;align-items:center;font-size:11px;font-family:var(--ff-mono);letter-spacing:.1em;color:#757575;}
-.lang-btn{font-family:var(--ff-mono);font-size:11px;font-weight:400;color:#757575;text-decoration:none;letter-spacing:.1em;transition:color .2s;}
+.lang-switch{display:flex;gap:6px;align-items:center;font-size:12.5px;font-weight:700;letter-spacing:.02em;color:#757575;}
+.lang-btn{font-size:12.5px;font-weight:700;color:#757575;text-decoration:none;letter-spacing:.02em;transition:color .2s;}
+.lang-btn.active{color:#1e5aa8;}
 .lang-btn:hover{color:var(--main);}
 @media(min-width:993px){.header-utility{display:flex;}}
 .menu-btn{width:42px;height:42px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:rgba(0,0,0,.04);border-radius:6px;}
@@ -1412,6 +1413,7 @@ footer{background:#030e0d;padding:44px 0 28px;border-top:1px solid rgba(255,255,
 
   /* ── 5. Language toggle ── */
   document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === (window.LANG || 'ko'));
     btn.addEventListener('click', function () {
       var lang = btn.getAttribute('data-lang');
       var url = new URL(location.href);
